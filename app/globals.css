@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f4f2ee;
+  --ivory: #f4f2ee;
+  --card: #fbfaf8;
+  --line: #e4e1da;
+  --ink: #161616;
+  --mut: #6f6b63;
+  --accent: #c9b99a;
+  --dark: #121212;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--ink);
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-inter-tight), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Exactly ONE word per heading in Instrument Serif Italic */
+  em {
+    font-family: var(--font-instrument-serif), Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  /* Signature Pearl Sphere - CSS radial-gradient (no images) */
+  .pearl-orb {
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 25%, #ffffff 0%, #eeece6 35%, #d9d6cd 65%, #b3b0a5 100%);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Hairline Orbit Ring */
+  .hairline-ring {
+    border: 1px solid #d6d2c8;
+    border-radius: 50%;
+  }
+
+  /* Quiet Luxury Card */
+  .quiet-card {
+    background-color: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .quiet-card:hover {
+    border-color: #cfcbc1;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  /* Number tag [ 01 / 05 ] */
+  .quiet-tag {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mut);
+    font-weight: 500;
+    font-family: var(--font-inter-tight), system-ui, sans-serif;
+  }
+
+  /* Shared Container across all pages */
+  .shared-container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .shared-container {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+}
+
+/* Lenis smooth scroll recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
