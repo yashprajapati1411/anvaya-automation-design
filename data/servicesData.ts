@@ -23,7 +23,7 @@ export const servicesData: ServiceDetail[] = [
     emphasizedTitle: 'Automation',
     category: 'AI',
     iconSymbol: '◎',
-    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80',
     summary: 'Autonomous workflows, agents and intelligent chatbots that quietly do the work.',
     description: 'We design and deploy autonomous agent swarms, intelligent document processing pipelines, and event-driven software bridges that eliminate repetitive human busywork without sacrificing precision.',
     disciplines: ['Workflow automation', 'Autonomous AI agents', 'CRM and lead routing', 'Intelligent document extraction'],

@@ -88,12 +88,6 @@ export default function ProjectsPage() {
                           {project.year}
                         </span>
                       </div>
-
-                      <div className="absolute bottom-4 left-4">
-                        <span className="text-[12px] font-semibold tracking-[0.12em] uppercase text-white bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
-                          {project.client}
-                        </span>
-                      </div>
                     </div>
 
                     <div className="p-7">

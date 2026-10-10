@@ -10,31 +10,43 @@ import { siteConfig } from '@/data/siteData';
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isNearTop, setIsNearTop] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    let scrollTimeout: NodeJS.Timeout;
-
     const handleScroll = () => {
-      const scrolled = window.scrollY > 25;
+      const currentScrollY = window.scrollY;
+      const scrolled = currentScrollY > 30;
       setIsScrolled(scrolled);
-      // Immediately hide when user scrolls down
-      if (scrolled) {
-        setIsNearTop(false);
+
+      // Determine scroll direction
+      if (currentScrollY > lastScrollYRef.current + 6 && currentScrollY > 70) {
+        setScrollDirection('down');
+      } else if (currentScrollY < lastScrollYRef.current - 6) {
+        setScrollDirection('up');
       }
+
+      lastScrollYRef.current = currentScrollY;
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Reveal navbar only when mouse is pointed within top 75px of screen
-      setIsNearTop(e.clientY <= 75);
+      // Reveal navbar only when mouse is pointed within top 80px of screen
+      if (e.clientY <= 80) {
+        setIsHovered(true);
+      } else {
+        setIsHovered(false);
+      }
     };
 
     // Initial check
-    setIsScrolled(window.scrollY > 25);
+    const initialScrolled = window.scrollY > 30;
+    setIsScrolled(initialScrolled);
+    lastScrollYRef.current = window.scrollY;
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -71,18 +83,16 @@ export const Navbar: React.FC = () => {
     { label: 'Contact', href: '/contact' },
   ];
 
-  // Navbar vanishes on scroll and only reappears when user points to navbar area
-  const isVisible = !isScrolled || isNearTop || mobileMenuOpen || isFocused;
+  // Navbar vanishes on scroll-down and only appears when scrolling up, hovering top area, or at top of page
+  const isVisible =
+    !isScrolled ||
+    isHovered ||
+    mobileMenuOpen ||
+    isFocused ||
+    scrollDirection === 'up';
 
   return (
     <>
-      {/* Invisible Hover Zone for Desktop: Top 90px of Viewport */}
-      <div
-        className="fixed top-0 left-0 right-0 h-[90px] z-[48] pointer-events-auto hidden md:block"
-        onMouseEnter={() => setIsNearTop(true)}
-        aria-hidden="true"
-      />
-
       {/* Main Navbar Header */}
       <motion.header
         initial={{ y: 0, opacity: 1 }}
@@ -90,20 +100,20 @@ export const Navbar: React.FC = () => {
           y: isVisible ? 0 : -110,
           opacity: isVisible ? 1 : 0,
         }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         onFocus={() => setIsFocused(true)}
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node)) {
             setIsFocused(false);
           }
         }}
-        onMouseEnter={() => setIsNearTop(true)}
-        onMouseLeave={() => setIsNearTop(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         className="fixed top-0 left-0 right-0 z-50 pointer-events-none py-5 md:py-6"
       >
         <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between">
-            {/* Logo: Anvaya Automation (Enlarged to fill header space elegantly) */}
+            {/* Logo: Anvaya Automation */}
             <div className="pointer-events-auto">
               <Link
                 href="/"
@@ -226,7 +236,7 @@ export const Navbar: React.FC = () => {
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
               <div className="text-center text-xs tracking-wider uppercase text-muted py-2 font-medium">
-                hello@anvayaautomation.com
+                contact@anvayaautomation.com
               </div>
             </div>
           </motion.div>

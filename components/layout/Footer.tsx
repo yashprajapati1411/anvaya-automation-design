@@ -116,6 +116,16 @@ export const Footer: React.FC = () => {
                     Contact Studio
                   </Link>
                 </li>
+                <li>
+                  <Link href="/privacy" className="hover:text-ivory transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="hover:text-ivory transition-colors">
+                    Terms of Service
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -173,8 +183,14 @@ export const Footer: React.FC = () => {
           <div>
             © {new Date().getFullYear()} Anvaya Automation. All rights reserved.
           </div>
-          <div className="flex items-center gap-4 sm:gap-6">
-            <span>AI Automation &amp; IT Services Studio</span>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5">
+            <Link href="/privacy" className="hover:text-ivory transition-colors">
+              Privacy Policy
+            </Link>
+            <span>·</span>
+            <Link href="/terms" className="hover:text-ivory transition-colors">
+              Terms of Service
+            </Link>
             <span>·</span>
             <Link href="/contact" className="hover:text-ivory transition-colors">
               contact@anvayaautomation.com

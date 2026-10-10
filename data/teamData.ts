@@ -50,32 +50,32 @@ export const projectApproachStages = [
 export const clientReviews = [
   {
     id: 'review-1',
-    client: 'Dr. Elena Rostova',
-    role: 'Chief Medical Officer',
-    company: 'Aura Health Clinics',
-    quote: 'Anvaya transformed our operational workflow from fragile manual chaos into a silent, predictable engine. Our clinical staff now focuses on patient care rather than administrative busywork.',
-    metric: '73% Operational Time Saved',
-    tag: 'Healthcare Automation',
+    client: 'Dr. Jaydeep Patel',
+    role: 'Consultant Orthopedic Surgeon & Director',
+    company: 'Trinay Orthopedic Hospital',
+    quote: 'Anvaya transformed our hospital telephony and appointment workflow into a silent, predictable engine. Our clinical staff now focuses on patient care rather than phone triage.',
+    metric: '91% Autonomous Booking Rate',
+    tag: 'Healthcare IVR',
     rating: 5
   },
   {
     id: 'review-2',
-    client: 'Vikram Sethi',
-    role: 'Director of Operations',
-    company: 'PulseFit Fitness Studios',
-    quote: 'The web app Anvaya engineered for our gyms eliminated booking drops and automated recurring memberships across all our facilities. The UI feels like quiet luxury.',
+    client: 'Pravinsinh Zala',
+    role: 'Founder (Owner)',
+    company: 'Tanush Fitness',
+    quote: 'The web app Anvaya engineered for Tanush Fitness eliminated booking drops and automated recurring memberships across all our facilities. The UI feels like quiet luxury.',
     metric: '84% Automated Renewals',
     tag: 'Web Platform',
     rating: 5
   },
   {
     id: 'review-3',
-    client: 'Devraj Singhania',
-    role: 'VP of Technology',
-    company: 'Nexus Global Logistics',
-    quote: 'What used to take 45 minutes of manual entry per international customs manifest now completes in 8 seconds with zero errors. Their engineering discipline is remarkable.',
-    metric: '8s Per Document Sync',
-    tag: 'Telephony & Cloud',
+    client: 'Ravindra Kapadiya',
+    role: 'Founder (Owner)',
+    company: 'Frontline Financial Services',
+    quote: 'FrontDesk AI sounds remarkably articulate and professional. It handles our client inquiries 24/7, eliminates hold times, and schedules qualified financial advisory meetings automatically.',
+    metric: '100% Inbound Calls Answered',
+    tag: 'Financial Voice AI',
     rating: 5
   }
 ];

@@ -320,5 +320,160 @@ export const blogsData: BlogPost[] = [
       ],
       conclusion: 'Design your operational infrastructure with the same intentional craft as your public brand.'
     }
+  },
+  {
+    slug: 'voice-ai-telephony-in-modern-healthcare-and-finance',
+    title: 'Voice AI & Autonomous Telephony: Modernizing Healthcare & Financial Desks',
+    category: 'AI',
+    readTime: '7 min',
+    date: 'Nov 2026',
+    featured: false,
+    summary: 'How low-latency conversational voice agents and smart IVR trees are replacing outdated phone systems to deliver zero-wait triage in healthcare and financial institutions.',
+    pullQuote: 'The best phone experience is one where the caller never waits on hold and leaves with an immediate, verified appointment.',
+    imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
+    toc: [
+      { id: 'telephony-hold-crisis', title: '1. The crisis of inbound telephony hold times' },
+      { id: 'low-latency-voice-ai', title: '2. Sub-second streaming voice architecture' },
+      { id: 'compliance-and-calendar-sync', title: '3. Compliance, doctor schedules & CRM sync' },
+      { id: 'hybrid-ivr-deployment', title: '4. Deploying hybrid IVR and voice AI' }
+    ],
+    author: {
+      name: 'Yash Prajapati',
+      role: 'Founder & AI Architect, Anvaya Automation'
+    },
+    content: {
+      intro: 'In critical sectors like healthcare clinics and financial advisory firms, telephone phone calls remain the primary inbound channel for urgent inquiries, appointments, and high-value customer acquisitions. Yet traditional switchboards and overwhelmed reception desks create chronic hold times, dropped calls, and frustrated clients.',
+      sections: [
+        {
+          id: 'telephony-hold-crisis',
+          title: '1. The crisis of inbound telephony hold times',
+          paragraphs: [
+            'During morning peak hours, orthopedic clinics and wealth management offices often experience a surge of concurrent phone calls. Staff are forced to put callers on hold while flipping through calendars, resulting in high call drop rates and lost client goodwill.',
+            'Furthermore, over 70% of inbound queries are repetitive: confirming doctor consultation availability, inquiring about branch operating hours, checking loan documentation prerequisites, or rescheduling existing slots.'
+          ]
+        },
+        {
+          id: 'low-latency-voice-ai',
+          title: '2. Sub-second streaming voice architecture',
+          paragraphs: [
+            'Modern autonomous voice receptionists use real-time full-duplex WebRTC pipelines. Instead of waiting for the user to complete their whole sentence and batch processing audio, voice AI models stream transcription token by token.',
+            'This architecture drops acoustic response latency below 600 milliseconds, producing fluid, human-like conversations where interruptions and clarifying interjections feel completely natural.'
+          ]
+        },
+        {
+          id: 'compliance-and-calendar-sync',
+          title: '3. Compliance, doctor schedules & CRM sync',
+          paragraphs: [
+            'Deterministic guardrails ensure that the AI never provides medical diagnoses or unauthorized investment advice. The voice agent identifies intent, gathers verified client identifiers, queries calendar availability via secure APIs, and locks in booking slots in real time.',
+            'Immediately following the call, structured call summaries, sentiment metrics, and automated confirmation messages (via SMS or WhatsApp) are dispatched, while the CRM record is updated instantly.'
+          ]
+        },
+        {
+          id: 'hybrid-ivr-deployment',
+          title: '4. Deploying hybrid IVR and voice AI',
+          paragraphs: [
+            'The highest performing implementations combine structured dual-tone multi-frequency (DTMF) keypad options with natural language conversational fallbacks. Callers seeking quick emergency routing or specific departments can press 1, while callers with general questions can simply speak naturally.'
+          ]
+        }
+      ],
+      conclusion: 'Autonomous telephony does not distance organizations from their clients; it honors their time by eliminating hold queues and providing instant, accurate assistance around the clock.'
+    }
+  },
+  {
+    slug: 'building-high-throughput-microservices-with-python-and-fastapi',
+    title: 'Architecting High-Throughput Microservices: Fast, Resilient Cloud Backends',
+    category: 'Cloud',
+    readTime: '6 min',
+    date: 'Nov 2026',
+    featured: false,
+    summary: 'An engineering blueprint for building asynchronous, sub-50ms API backends with FastAPI, PostgreSQL connection pooling, Redis caching, and automated container scaling.',
+    pullQuote: 'Speed in cloud architecture is not just a benchmark metric; it is the foundation of user retention and operational stability.',
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+    toc: [
+      { id: 'async-event-loops', title: '1. Async event loops vs synchronous blocking' },
+      { id: 'connection-pooling-redis', title: '2. Connection pooling & Redis cache tiering' },
+      { id: 'zero-downtime-deploys', title: '3. Zero-downtime rolling container deploys' }
+    ],
+    author: {
+      name: 'Aarav Patel',
+      role: 'Principal Engineer, Anvaya Automation'
+    },
+    content: {
+      intro: 'When client applications scale from thousands to millions of daily requests, legacy monolithic architectures with synchronous blocking I/O rapidly bottleneck. Building resilient, low-latency microservices requires intentional choices in framework concurrency, database connection management, and container autoscaling.',
+      sections: [
+        {
+          id: 'async-event-loops',
+          title: '1. Async event loops vs synchronous blocking',
+          paragraphs: [
+            'FastAPI leverages Python 3.11+ asynchronous event loops (uvloop) and Pydantic v2 written in Rust. Because network calls to databases and external APIs do not block Python worker threads, a single container can handle thousands of concurrent connections with negligible memory overhead.',
+            'Type annotations provide compile-time verification, automatic OpenAPI documentation, and strict runtime request validation without manual deserialization code.'
+          ]
+        },
+        {
+          id: 'connection-pooling-redis',
+          title: '2. Connection pooling & Redis cache tiering',
+          paragraphs: [
+            'Database connection storms are the primary cause of cloud outage cascades under load. Implementing AsyncPG connection pools with strict connection limits prevents database thread exhaustion.',
+            'Layering Redis in-memory caches with cache-aside patterns and TTL invalidation ensures that high-frequency read endpoints respond in under 5 milliseconds directly from RAM.'
+          ]
+        },
+        {
+          id: 'zero-downtime-deploys',
+          title: '3. Zero-downtime rolling container deploys',
+          paragraphs: [
+            'Docker container images packaged with multi-stage builds reduce deployment artifact sizes to under 80MB. Combined with AWS ECS or Kubernetes rolling update health checks, new code ships continuously with zero dropped user sessions.'
+          ]
+        }
+      ],
+      conclusion: 'Reliable microservices are built through architectural simplicity. Prioritize strict types, asynchronous I/O, and disciplined observability over sprawling infrastructure complexity.'
+    }
+  },
+  {
+    slug: 'headless-commerce-and-high-conversion-web-engineering',
+    title: 'The Engineering Behind High-Conversion Web Architecture in 2026',
+    category: 'Web',
+    readTime: '5 min',
+    date: 'Oct 2026',
+    featured: false,
+    summary: 'Why decoupling your frontend with Next.js, optimizing edge caching, and engineering zero-layout-shift micro-interactions drives double-digit conversion lift.',
+    pullQuote: 'Every 100 milliseconds of interface delay quietly costs your enterprise 1% in conversion. Craft and performance are synonymous.',
+    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    toc: [
+      { id: 'latency-and-layout-shifts', title: '1. The cost of layout shifts and latency' },
+      { id: 'edge-caching-optimistic-ui', title: '2. Edge caching and optimistic state updates' },
+      { id: 'quiet-luxury-ui-roi', title: '3. The compounding ROI of quiet luxury UI' }
+    ],
+    author: {
+      name: 'Simran Kaur',
+      role: 'Head of Growth, Anvaya Automation'
+    },
+    content: {
+      intro: 'Modern digital consumers have zero patience for sluggish web interfaces, visual layout shifts, or bloated legacy CMS templates. In modern digital commerce and SaaS, conversion rate optimization is no longer just a copywriting exercise—it is fundamentally a technical frontend engineering discipline.',
+      sections: [
+        {
+          id: 'latency-and-layout-shifts',
+          title: '1. The cost of layout shifts and latency',
+          paragraphs: [
+            'Cumulative Layout Shift (CLS) and slow Interaction to Next Paint (INP) directly depress checkout conversion. When interface buttons jump while assets load or inputs freeze during heavy JavaScript execution, users abandon carts.',
+            'By adopting Next.js App Router with React Server Components, initial HTML payloads are streamed instantaneously from edge nodes, slashing Time to First Byte (TTFB) to under 80 milliseconds globally.'
+          ]
+        },
+        {
+          id: 'edge-caching-optimistic-ui',
+          title: '2. Edge caching and optimistic state updates',
+          paragraphs: [
+            'Static assets and product catalog pages should be served from globally distributed CDN edge caches. When a user clicks an action—like adding a membership tier or booking a consultation—the UI updates optimistically before network confirmation arrives, making the platform feel instantaneous.'
+          ]
+        },
+        {
+          id: 'quiet-luxury-ui-roi',
+          title: '3. The compounding ROI of quiet luxury UI',
+          paragraphs: [
+            'High-ticket clients and enterprise decision-makers evaluate software credibility through its visual poise. Generous whitespace, refined typography, and purposeful micro-interactions convey institutional trust that loud, clutter-filled web templates cannot match.'
+          ]
+        }
+      ],
+      conclusion: 'Invest in frontend speed and typographic poise. Exceptional engineering is the most enduring growth catalyst a digital business can build.'
+    }
   }
 ];
