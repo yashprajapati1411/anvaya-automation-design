@@ -88,55 +88,63 @@ export default function BlogDetailPage({ params }: Props) {
             </div>
           </FadeUp>
 
-          {/* Article Header */}
+          {/* Article Header & Compact Editorial Layout */}
           <FadeUp delay={0.1}>
-            <div className="max-w-4xl mb-10">
-              <div className="flex flex-wrap items-center gap-3 text-[12px] font-semibold tracking-[0.14em] uppercase text-muted mb-6">
-                <span className="px-3.5 py-1 rounded-full bg-card border border-line text-ink">
-                  {post.category}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5" /> {post.readTime} read
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5" /> {post.date}
-                </span>
-              </div>
-
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-ink mb-8 leading-tight">
-                {post.title}
-              </h1>
-
-              {/* Author Strip */}
-              <div className="flex items-center justify-between pb-8 border-b border-line">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-11 h-11 rounded-full bg-card border border-line flex items-center justify-center font-bold text-sm text-ink">
-                    {post.author.name[0]}
+            <div className="pb-10 mb-12 border-b border-line">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                {/* Left: Article Title, Meta, Author */}
+                <div className="lg:col-span-8">
+                  <div className="flex flex-wrap items-center gap-3 text-[12px] font-semibold tracking-[0.14em] uppercase text-muted mb-5">
+                    <span className="px-3 py-1 rounded-pill bg-card border border-line text-ink">
+                      {post.category}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3.5 h-3.5" /> {post.readTime} read
+                    </span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3.5 h-3.5" /> {post.date}
+                    </span>
                   </div>
-                  <div>
-                    <div className="text-sm font-bold text-ink">
-                      {post.author.name}
+
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink mb-6 leading-[1.08]">
+                    {post.title}
+                  </h1>
+
+                  {/* Author Strip & Share */}
+                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-ink text-ivory flex items-center justify-center font-bold text-sm shadow-xs">
+                        {post.author.name[0]}
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-ink">
+                          {post.author.name}
+                        </div>
+                        <div className="text-xs text-muted font-normal">
+                          {post.author.role}
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-xs text-muted font-normal">
-                      {post.author.role}
-                    </div>
+
+                    <ShareButtons title={post.title} />
                   </div>
                 </div>
 
-                <ShareButtons title={post.title} />
+                {/* Right: Sleek Compact Editorial Visual (No oversized banner) */}
+                <div className="lg:col-span-4 flex justify-center lg:justify-end">
+                  <div className="w-full max-w-[380px] h-48 sm:h-56 rounded-[24px] overflow-hidden border border-line bg-card shadow-sm relative group">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                </div>
               </div>
             </div>
           </FadeUp>
-
-          {/* Article Hero Banner Image */}
-          <div className="mb-14 h-64 sm:h-80 md:h-[420px] w-full rounded-[30px] overflow-hidden relative border border-line bg-neutral-200 shadow-sm">
-            <img
-              src={post.imageUrl}
-              alt={post.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
 
           {/* Main Content Layout with 680px Reading Column + Sticky Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">

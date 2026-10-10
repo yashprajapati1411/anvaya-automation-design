@@ -73,11 +73,6 @@ export const Footer: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services/mobile-development" className="hover:text-ivory transition-colors">
-                    Mobile Development
-                  </Link>
-                </li>
-                <li>
                   <Link href="/services/cloud-infrastructure" className="hover:text-ivory transition-colors">
                     Cloud Infrastructure
                   </Link>
@@ -165,10 +160,11 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Oversized Brand Watermark: ANVAYA AUTOMATION cleanly fitting across footer */}
-        <div className="select-none text-left overflow-hidden pt-10 pb-4">
-          <div className="font-bold tracking-tight uppercase leading-[0.85] text-[#222222] text-[clamp(28px,7.5vw,96px)]">
-            Anvaya Automation
+        {/* Oversized Brand Watermark: ANVAYA on Line 1, AUTOMATION on Line 2 */}
+        <div className="select-none text-left overflow-hidden pt-12 pb-6 border-b border-white/5">
+          <div className="font-bold tracking-tight uppercase leading-[0.88] text-[#1c1c1c] text-[clamp(2.75rem,9.5vw,120px)] space-y-1">
+            <div className="tracking-tight text-[#252525]">ANVAYA</div>
+            <div className="tracking-tight text-[#1a1a1a]">AUTOMATION</div>
           </div>
         </div>
 

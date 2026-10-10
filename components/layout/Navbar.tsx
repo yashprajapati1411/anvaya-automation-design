@@ -11,43 +11,28 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNearTop, setIsNearTop] = useState(false);
-  const [isTopScroll, setIsTopScroll] = useState(true);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [isTouch, setIsTouch] = useState(false);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const checkTouch = () => {
-      setIsTouch(window.matchMedia('(hover: none)').matches);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
     };
-    checkTouch();
-    window.addEventListener('resize', checkTouch);
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Invisible hover zone: top 90px of viewport
+      // Reveal navbar only when mouse is within top 90px of screen
       setIsNearTop(e.clientY <= 90);
     };
 
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsTopScroll(currentScrollY < 80);
-
-      if (currentScrollY > lastScrollY.current + 6) {
-        setScrollDirection('down');
-      } else if (currentScrollY < lastScrollY.current - 6) {
-        setScrollDirection('up');
-      }
-      lastScrollY.current = currentScrollY;
-    };
+    // Initial check
+    setIsScrolled(window.scrollY > 30);
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('resize', checkTouch);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
     };
@@ -79,15 +64,8 @@ export const Navbar: React.FC = () => {
     { label: 'Contact', href: '/contact' },
   ];
 
-  // Determine visibility
-  // At very top (< 80px), always visible
-  // On desktop: visible when near top (mouse in top 90px) or focused
-  // On touch: visible when scrolling up
-  const isVisible =
-    isTopScroll ||
-    isFocused ||
-    mobileMenuOpen ||
-    (isTouch ? scrollDirection === 'up' : isNearTop);
+  // Navbar vanishes on scroll and only reappears when user points to navbar area
+  const isVisible = !isScrolled || isNearTop || mobileMenuOpen || isFocused;
 
   return (
     <>
@@ -98,11 +76,14 @@ export const Navbar: React.FC = () => {
         aria-hidden="true"
       />
 
-      {/* Main Navbar Header: No full-width background bar */}
+      {/* Main Navbar Header */}
       <motion.header
-        initial={{ y: 0 }}
-        animate={{ y: isVisible ? 0 : -100 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ y: 0, opacity: 1 }}
+        animate={{
+          y: isVisible ? 0 : -110,
+          opacity: isVisible ? 1 : 0,
+        }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         onFocus={() => setIsFocused(true)}
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -115,20 +96,20 @@ export const Navbar: React.FC = () => {
       >
         <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between">
-            {/* Logo: Anvaya Automation */}
+            {/* Logo: Anvaya Automation (Enlarged to fill header space elegantly) */}
             <div className="pointer-events-auto">
               <Link
                 href="/"
-                className="font-bold text-xl tracking-tight text-ink hover:opacity-80 transition-opacity select-none"
+                className="font-bold text-2xl lg:text-[26px] tracking-tight text-ink hover:opacity-85 transition-opacity select-none whitespace-nowrap"
               >
                 Anvaya Automation
               </Link>
             </div>
 
-            {/* Desktop Floating Pill Navbar */}
+            {/* Desktop Floating Pill Navbar with Generous Padding & Gaps */}
             <nav
               aria-label="Primary Navigation"
-              className="hidden md:flex items-center gap-1.5 bg-surface/90 backdrop-blur-md border border-line rounded-pill p-[6px] shadow-[0_4px_24px_rgba(0,0,0,0.04)] pointer-events-auto"
+              className="hidden md:flex items-center gap-2 lg:gap-3 bg-surface/90 backdrop-blur-md border border-line rounded-pill p-2 shadow-[0_4px_24px_rgba(0,0,0,0.04)] pointer-events-auto"
             >
               {navLinks.map((link) => {
                 const isActive =
@@ -140,7 +121,7 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-4.5 py-2 text-[14px] font-medium rounded-pill transition-colors duration-200 select-none ${
+                    className={`relative px-5 lg:px-6 py-2.5 text-[14px] font-semibold rounded-pill transition-colors duration-200 select-none whitespace-nowrap ${
                       isActive ? 'text-ivory' : 'text-ink hover:text-neutral-900'
                     }`}
                   >
@@ -157,11 +138,11 @@ export const Navbar: React.FC = () => {
               })}
             </nav>
 
-            {/* Ghost CTA Button */}
+            {/* Luxury CTA Button */}
             <div className="hidden md:flex items-center pointer-events-auto">
               <Link
                 href="/contact"
-                className="border border-ink bg-surface/80 backdrop-blur-sm rounded-pill px-5 py-2.5 text-[14px] font-medium text-ink hover:bg-ink hover:text-ivory transition-all duration-200 shadow-sm"
+                className="luxury-btn-light rounded-pill px-6 py-2.5 text-[14px] font-semibold whitespace-nowrap shadow-xs"
               >
                 Get in touch
               </Link>
@@ -171,7 +152,7 @@ export const Navbar: React.FC = () => {
             <div className="flex md:hidden items-center gap-2 pointer-events-auto">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="px-4 py-2 min-h-[44px] min-w-[70px] rounded-pill border border-line bg-surface/95 backdrop-blur-md text-ink text-xs font-medium tracking-wide uppercase flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform"
+                className="px-5 py-2.5 min-h-[44px] min-w-[70px] rounded-pill border border-line bg-surface/95 backdrop-blur-md text-ink text-xs font-semibold tracking-wide uppercase flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform"
                 aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileMenuOpen}
               >

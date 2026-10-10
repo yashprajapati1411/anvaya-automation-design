@@ -79,16 +79,17 @@ export const CustomCursor: React.FC = () => {
           translateY: '-50%',
         }}
         animate={{
-          width: cursorText ? 64 : isHovered ? 44 : 28,
-          height: cursorText ? 64 : isHovered ? 44 : 28,
-          backgroundColor: cursorText ? 'rgba(244, 242, 238, 0.92)' : 'transparent',
-          borderColor: cursorText ? '#161616' : isHovered ? 'rgba(22, 22, 22, 0.6)' : 'rgba(22, 22, 22, 0.25)',
+          width: cursorText ? 64 : isHovered ? 0 : 28,
+          height: cursorText ? 64 : isHovered ? 0 : 28,
+          opacity: cursorText ? 1 : isHovered ? 0 : 0.6,
+          backgroundColor: cursorText ? 'rgba(244, 242, 238, 0.94)' : 'transparent',
+          borderColor: cursorText ? '#161616' : 'rgba(22, 22, 22, 0.25)',
           backdropFilter: cursorText ? 'blur(4px)' : 'none',
         }}
-        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
       >
         {cursorText && (
-          <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink)] font-medium select-none">
+          <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink)] font-semibold select-none">
             {cursorText}
           </span>
         )}

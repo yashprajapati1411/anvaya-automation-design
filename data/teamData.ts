@@ -19,31 +19,31 @@ export const guidingPrinciples = [
 export const projectApproachStages = [
   {
     step: '01',
-    phase: 'Deep Operational Diagnostic',
-    subtitle: 'Friction Mapping & Technical Audit',
-    desc: 'We map every repetitive manual task, analyze system bottlenecks, and identify high-yield automation targets before touching a line of code.',
-    deliverable: 'Operational Friction Matrix & ROI Feasibility Map'
+    phase: 'System Audit & Discovery',
+    subtitle: 'Workflow Mapping & ROI Analysis',
+    desc: 'We audit manual bottlenecks, calculate ROI targets, and map high-leverage automation opportunities before writing code.',
+    deliverable: 'Operational Friction Matrix & ROI Roadmap'
   },
   {
     step: '02',
-    phase: 'Deterministic Architecture',
-    subtitle: 'System Schemas & Interface Wireframes',
-    desc: 'We engineer strict fallback boundaries, type-safe API contracts, and high-fidelity quiet-luxury Figma prototypes agreed in complete detail.',
-    deliverable: 'Architectural Blueprint & Security Specification'
+    phase: 'Custom System Architecture',
+    subtitle: 'Data Schemas & Guardrails',
+    desc: 'We design deterministic AI guardrails, type-safe API schemas, and minimal high-fidelity interfaces agreed in full detail.',
+    deliverable: 'Architectural Blueprint & Prototype Specification'
   },
   {
     step: '03',
-    phase: 'Agile Production Engineering',
-    subtitle: 'Weekly Releases & Staging Previews',
-    desc: 'We build with modern frameworks (Next.js, Python, PostgreSQL), providing interactive weekly staging demos so you see working progress at all times.',
-    deliverable: 'Production Codebase & Sandboxed Integrations'
+    phase: 'Rapid Engineering Sprints',
+    subtitle: 'Weekly Previews & Code Delivery',
+    desc: 'We build with clean Next.js, Python, and cloud infrastructure, shipping weekly interactive staging links for real testing.',
+    deliverable: 'Production Codebase & Integrated Pipelines'
   },
   {
     step: '04',
-    phase: 'Telemetry & Autonomous Evolution',
-    subtitle: 'SLA Support & Perpetual Tuning',
-    desc: 'Real-time observability, automated exception handling, and continuous model calibration ensure your systems compound value indefinitely.',
-    deliverable: 'Live Telemetry Dashboard & 24/7 SLA Support'
+    phase: 'Deployment & Ongoing SLA',
+    subtitle: 'Zero-Downtime Launch & Tuning',
+    desc: 'We execute full cloud cutover, complete staff training handover, and provide proactive 24/7 uptime monitoring.',
+    deliverable: 'Live Production Launch & 24/7 SLA Support'
   }
 ];
 

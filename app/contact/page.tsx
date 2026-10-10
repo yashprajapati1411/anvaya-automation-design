@@ -11,7 +11,6 @@ import { siteConfig } from '@/data/siteData';
 const serviceOptions = [
   'AI Automation',
   'Web Applications',
-  'Mobile Apps',
   'Cloud & DevOps',
   'SEO & Authority',
   'Digital Marketing',
@@ -174,7 +173,7 @@ export default function ContactPage() {
                         name="name"
                         type="text"
                         placeholder="e.g. Vikram Sethi"
-                        className="w-full bg-white border border-line rounded-xl px-4.5 py-3.5 text-base text-ink placeholder-muted focus:outline-none focus:border-ink transition-colors min-h-[46px]"
+                        className="w-full bg-white border border-line rounded-xl px-5 py-3.5 text-base text-ink placeholder-muted focus:outline-none focus:border-ink transition-colors min-h-[46px]"
                       />
                       {result?.errors?.name && (
                         <p className="text-xs text-red-600 mt-1">{result.errors.name[0]}</p>
@@ -191,7 +190,7 @@ export default function ContactPage() {
                         name="email"
                         type="email"
                         placeholder="e.g. vikram@company.com"
-                        className="w-full bg-white border border-line rounded-xl px-4.5 py-3.5 text-base text-ink placeholder-muted focus:outline-none focus:border-ink transition-colors min-h-[46px]"
+                        className="w-full bg-white border border-line rounded-xl px-5 py-3.5 text-base text-ink placeholder-muted focus:outline-none focus:border-ink transition-colors min-h-[46px]"
                       />
                       {result?.errors?.email && (
                         <p className="text-xs text-red-600 mt-1">{result.errors.email[0]}</p>
@@ -207,7 +206,7 @@ export default function ContactPage() {
                         name="company"
                         type="text"
                         placeholder="e.g. Acme Corp / acme.com"
-                        className="w-full bg-white border border-line rounded-xl px-4.5 py-3.5 text-base text-ink placeholder-muted focus:outline-none focus:border-ink transition-colors min-h-[46px]"
+                        className="w-full bg-white border border-line rounded-xl px-5 py-3.5 text-base text-ink placeholder-muted focus:outline-none focus:border-ink transition-colors min-h-[46px]"
                       />
                     </div>
 
@@ -216,7 +215,7 @@ export default function ContactPage() {
                       <label className="block text-[12px] uppercase tracking-[0.14em] text-muted font-semibold mb-3">
                         I&apos;m interested in *
                       </label>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2.5">
                         {serviceOptions.map((service) => {
                           const isSelected = selectedServices.includes(service);
                           return (
@@ -224,10 +223,10 @@ export default function ContactPage() {
                               type="button"
                               key={service}
                               onClick={() => toggleService(service)}
-                              className={`px-4.5 py-2.5 rounded-full text-xs font-semibold transition-all min-h-[44px] ${
+                              className={`px-5 sm:px-6 py-2.5 rounded-pill text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all select-none min-h-[44px] ${
                                 isSelected
-                                  ? 'bg-ink text-ivory shadow-sm'
-                                  : 'bg-white border border-line text-ink hover:border-ink'
+                                  ? 'bg-ink text-ivory border border-ink shadow-sm'
+                                  : 'luxury-btn-light bg-white border border-line text-ink hover:border-ink'
                               }`}
                             >
                               {service}
@@ -250,7 +249,7 @@ export default function ContactPage() {
                         name="message"
                         rows={4}
                         placeholder="Brief overview of your operational bottleneck or goals..."
-                        className="w-full bg-white border border-line rounded-xl px-4.5 py-3.5 text-base text-ink placeholder-muted focus:outline-none focus:border-ink transition-colors resize-none"
+                        className="w-full bg-white border border-line rounded-xl px-5 py-3.5 text-base text-ink placeholder-muted focus:outline-none focus:border-ink transition-colors resize-none"
                       />
                       {result?.errors?.message && (
                         <p className="text-xs text-red-600 mt-1">{result.errors.message[0]}</p>
@@ -263,7 +262,7 @@ export default function ContactPage() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full bg-ink text-ivory font-semibold text-sm hover:bg-neutral-800 transition-all shadow-md disabled:opacity-50 min-h-[46px]"
+                          className="w-full sm:w-auto luxury-btn-dark px-9 py-4 rounded-pill font-semibold text-sm shadow-md disabled:opacity-50 min-h-[46px] inline-flex items-center justify-center gap-2"
                         >
                           {isSubmitting ? (
                             <>

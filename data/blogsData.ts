@@ -34,7 +34,7 @@ export const blogsData: BlogPost[] = [
     featured: true,
     summary: 'A practical, calm look at what growing companies should automate first—and what they should strictly leave to human intuition.',
     pullQuote: 'Technology should reduce effort, not add to it. True automation is quiet, reliable, and invisible.',
-    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
     toc: [
       { id: 'identifying-friction', title: '1. Identifying high-friction tasks' },
       { id: 'deterministic-vs-generative', title: '2. Deterministic vs generative AI' },

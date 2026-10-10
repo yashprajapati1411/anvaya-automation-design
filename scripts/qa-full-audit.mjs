@@ -15,7 +15,6 @@ const routes = [
   '/services',
   '/services/ai-automation',
   '/services/web-applications',
-  '/services/mobile-development',
   '/services/cloud-infrastructure',
   '/services/seo',
   '/services/digital-marketing',

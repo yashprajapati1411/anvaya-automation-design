@@ -27,7 +27,7 @@ export default function ServicesPage() {
             Our services.
           </h1>
           <p className="mt-4 text-muted text-base sm:text-lg max-w-2xl leading-relaxed font-light">
-            Six disciplines, unified under one studio. Built to eliminate operational friction and engineer compounding digital growth.
+            Five core disciplines, unified under one studio. Built to eliminate operational friction and engineer compounding digital growth.
           </p>
 
           {/* Filter Pills */}

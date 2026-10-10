@@ -91,39 +91,8 @@ export const servicesData: ServiceDetail[] = [
     ]
   },
   {
-    slug: 'mobile-development',
-    number: '03',
-    title: 'Mobile Development',
-    emphasizedTitle: 'Mobile',
-    category: 'Engineering',
-    iconSymbol: '▯',
-    imageUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
-    summary: 'Bespoke iOS and Android mobile applications crafted for native responsiveness.',
-    description: 'Bespoke mobile applications crafted with Flutter and React Native. Smooth 60fps animations, intuitive gesture handling, and offline-first data architectures that customers love using daily.',
-    disciplines: ['iOS native apps', 'Android applications', 'Cross-platform Flutter', 'Offline synchronization'],
-    deliverables: [
-      'Platform-native UI components conforming to Apple Human Interface and Material Design',
-      'Offline-first synchronization with conflict resolution',
-      'Push notification pipelines and deep-linking routing',
-      'Full App Store and Google Play deployment management'
-    ],
-    techStack: ['Flutter', 'React Native', 'Swift', 'Kotlin', 'Firebase', 'Supabase'],
-    process: [
-      { step: '01', title: 'User Flows', desc: 'Detailed user journeys and interaction wireframes designed for thumb navigation.' },
-      { step: '02', title: 'Architecture', desc: 'Offline-capable local storage schemas and secure token authentication.' },
-      { step: '03', title: 'Build', desc: 'Bimonthly TestFlight and internal track APK builds for continuous feedback.' },
-      { step: '04', title: 'App Store Submission', desc: 'Complete metadata, compliance verification, and store release.' }
-    ],
-    faqs: [
-      {
-        question: 'Do you build native Swift/Kotlin or cross-platform?',
-        answer: 'We recommend cross-platform Flutter or React Native for 90% of business applications to reduce build costs and ensure feature parity across iOS and Android without sacrificing 60fps performance.'
-      }
-    ]
-  },
-  {
     slug: 'cloud-infrastructure',
-    number: '04',
+    number: '03',
     title: 'Cloud Infrastructure',
     emphasizedTitle: 'Cloud',
     category: 'Engineering',
@@ -154,7 +123,7 @@ export const servicesData: ServiceDetail[] = [
   },
   {
     slug: 'seo',
-    number: '05',
+    number: '04',
     title: 'SEO Services',
     emphasizedTitle: 'SEO',
     category: 'Growth',
@@ -185,7 +154,7 @@ export const servicesData: ServiceDetail[] = [
   },
   {
     slug: 'digital-marketing',
-    number: '06',
+    number: '05',
     title: 'Digital Marketing',
     emphasizedTitle: 'Marketing',
     category: 'Growth',

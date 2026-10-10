@@ -67,8 +67,8 @@ This repository hosts the complete frontend web application for Anvaya Automatio
 ## ✦ Routes & Architecture
 
 ### Core Pages
-- `/` — **Home:** Zooming pearl sphere hero, vertical services showcase with imagery, 3 architectural principles, interactive process selector, client verification reviews, editorial blog teaser, and project initiation CTA.
-- `/services` — **Services Directory:** Overview of all 6 studio capabilities with thematic image headers.
+- `/` — **Home:** 3D gyroscopic perspective levitation hero, vertical services showcase with imagery, 3 architectural principles, interactive process selector, client verification reviews, editorial blog teaser, and project initiation CTA.
+- `/services` — **Services Directory:** Overview of all 5 studio capabilities with thematic image headers.
 - `/projects` — **Work & Case Studies:** Showcasing PulseFit, CareDial, and FrontDesk AI with detailed challenges, architectures, and metrics.
 - `/blog` — **Insights:** Editorial perspectives on AI systems, software architecture, and growth with real thematic photography.
 - `/about` — **Studio Vision:** Concise origin story, guiding principles, and a 4-phase project engagement blueprint.
@@ -77,7 +77,6 @@ This repository hosts the complete frontend web application for Anvaya Automatio
 ### Dedicated Service Slugs
 - `/services/ai-automation`
 - `/services/web-applications`
-- `/services/mobile-development`
 - `/services/cloud-infrastructure`
 - `/services/seo`
 - `/services/digital-marketing`

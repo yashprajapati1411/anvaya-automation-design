@@ -10,23 +10,6 @@ import { FadeUp } from '@/components/ui/FadeUp';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { guidingPrinciples, projectApproachStages } from '@/data/teamData';
 
-const techPills = [
-  'n8n',
-  'OpenAI',
-  'Next.js 14',
-  'TypeScript',
-  'React',
-  'Python',
-  'FastAPI',
-  'AWS',
-  'PostgreSQL',
-  'Supabase',
-  'Docker',
-  'Tailwind CSS',
-  'Flutter',
-  'LangChain',
-];
-
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-bg text-ink pt-32 pb-24">
@@ -174,27 +157,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* TECHNOLOGY STACK STRIP */}
-        <section className="py-20">
-          <FadeUp>
-            <div className="text-center mb-8">
-              <span className="text-[12px] uppercase tracking-[0.16em] text-muted font-semibold">
-                TECHNOLOGIES WE COMPOSE WITH
-              </span>
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-3 max-w-4xl mx-auto">
-              {techPills.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4.5 py-2 rounded-full text-xs sm:text-sm font-semibold bg-card border border-line text-ink hover:border-ink transition-colors shadow-2xs"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </FadeUp>
-        </section>
-
         {/* FINAL CTA BANNER */}
         <FadeUp delay={0.1}>
           <div className="mt-8 p-10 sm:p-14 lg:p-16 rounded-[36px] bg-[#121212] text-[#F4F2EE] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
@@ -213,7 +175,7 @@ export default function AboutPage() {
               <Magnetic>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#F4F2EE] text-[#121212] font-semibold text-sm hover:bg-white transition-all shadow-md min-h-[46px]"
+                  className="luxury-btn-light px-8 py-4 rounded-pill text-[#121212] font-semibold text-sm shadow-md min-h-[46px] whitespace-nowrap inline-flex items-center gap-2.5"
                 >
                   <span>Start a conversation</span>
                   <ArrowRight className="w-4 h-4" />
