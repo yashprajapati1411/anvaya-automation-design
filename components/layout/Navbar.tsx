@@ -17,17 +17,24 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    let scrollTimeout: NodeJS.Timeout;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      const scrolled = window.scrollY > 25;
+      setIsScrolled(scrolled);
+      // Immediately hide when user scrolls down
+      if (scrolled) {
+        setIsNearTop(false);
+      }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Reveal navbar only when mouse is within top 90px of screen
-      setIsNearTop(e.clientY <= 90);
+      // Reveal navbar only when mouse is pointed within top 75px of screen
+      setIsNearTop(e.clientY <= 75);
     };
 
     // Initial check
-    setIsScrolled(window.scrollY > 30);
+    setIsScrolled(window.scrollY > 25);
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });

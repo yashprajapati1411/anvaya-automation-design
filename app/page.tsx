@@ -51,122 +51,133 @@ export default function HomePage() {
 
   return (
     <div className="relative overflow-hidden w-full">
-      {/* ================= 1. REDESIGNED HERO SECTION (QUIET LUXURY + SCROLL ANIMATION) ================= */}
+      {/* ================= 1. REDESIGNED HERO SECTION (BACKGROUND VIDEO + LAYERED SPHERE HEADLINE + SCROLL ANIMATION) ================= */}
       <section
         ref={heroRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className="relative min-h-[100svh] w-full flex flex-col justify-between pt-28 md:pt-36 pb-12 overflow-hidden bg-bg"
       >
+        {/* Continuous Ambient Background Video Loop (Theme-matching quiet luxury) */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover opacity-50 mix-blend-multiply"
+          >
+            <source src="/hero-ambient.mp4" type="video/mp4" />
+          </video>
+          {/* Subtle Champagne & Ivory Vignette Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F2EE]/50 via-transparent to-[#F4F2EE] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#F4F2EE]/40 via-transparent to-[#F4F2EE]/40 pointer-events-none" />
+        </div>
+
         {/* Soft Ambient Champagne Halo Glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[450px] rounded-full bg-gradient-to-b from-[#C9B99A]/18 via-[#EAE4D7]/25 to-transparent blur-3xl pointer-events-none -z-0" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[550px] rounded-full bg-gradient-to-b from-[#C9B99A]/20 via-[#EAE4D7]/25 to-transparent blur-3xl pointer-events-none z-0" />
 
-        {/* Hero Main Content */}
-        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10 flex-1 flex flex-col justify-center items-center text-center">
-          
-          {/* Eyebrow Studio Tag */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-pill bg-surface border border-line text-xs font-semibold uppercase tracking-[0.16em] text-[#6F6B63] mb-6 shadow-2xs select-none"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-champagne" />
-            <span>AI Automation &amp; Software Studio</span>
-          </motion.div>
-
-          {/* Majestic Hero Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ y: heroTextY, opacity: heroTextOpacity }}
-            className="text-[clamp(2.75rem,7.5vw,5.75rem)] font-bold tracking-tight leading-[0.98] text-ink select-none max-w-4xl mx-auto pb-4"
-          >
-            Intelligence, refined.
-          </motion.h1>
-
-          {/* Editorial Subtitle Narrative */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{ y: heroTextY, opacity: heroTextOpacity }}
-            className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl mx-auto leading-relaxed mt-2 mb-8"
-          >
-            We design autonomous workflows, custom web platforms, cloud architecture, and compounding growth systems. Engineered with quiet precision for growing businesses.
-          </motion.p>
-
-          {/* Action CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap items-center justify-center gap-4 mb-10 sm:mb-14"
-          >
-            <Magnetic>
-              <Link
-                href="/contact"
-                className="luxury-btn-dark px-8 sm:px-9 py-3.5 sm:py-4 rounded-pill text-sm font-semibold tracking-wide shadow-sm min-h-[46px] inline-flex items-center gap-2.5"
-              >
-                <span>Start a conversation</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Magnetic>
-            <Magnetic>
-              <Link
-                href="/services"
-                className="luxury-btn-light px-8 sm:px-9 py-3.5 sm:py-4 rounded-pill text-sm font-semibold tracking-wide shadow-2xs min-h-[46px] inline-flex items-center gap-2"
-              >
-                <span>Explore capabilities</span>
-              </Link>
-            </Magnetic>
-          </motion.div>
-
-          {/* Signature Pearl Orb Centerpiece with Parallax Scroll & Celestial Rings */}
-          <motion.div
-            style={{
-              y: heroSphereY,
-              scale: heroSphereScale,
-              rotateX: tiltX,
-              rotateY: tiltY,
-            }}
-            className="relative flex items-center justify-center my-2 sm:my-4 select-none [perspective:1000px]"
-          >
-            {/* Outer Slow-Rotating Hairline Celestial Orbit Ring */}
+        {/* Hero Main Content Area: Centered Stage with Sphere directly behind text */}
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10 flex-1 flex flex-col justify-center items-center">
+          <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center justify-center min-h-[62vh] py-6 sm:py-10">
+            
+            {/* Luminous Pearl Sphere & Celestial Orbital Centerpiece Directly Behind Headline */}
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-              className="absolute w-[320px] sm:w-[440px] md:w-[500px] h-[320px] sm:h-[440px] md:h-[500px] rounded-full border border-[#DCD6CA] pointer-events-none"
+              style={{
+                y: heroSphereY,
+                scale: heroSphereScale,
+                rotateX: tiltX,
+                rotateY: tiltY,
+              }}
+              className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 [perspective:1000px]"
             >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-champagne shadow-xs" />
+              {/* Outer Slow-Rotating Hairline Celestial Orbit Ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
+                className="absolute w-[360px] sm:w-[500px] md:w-[620px] lg:w-[680px] h-[360px] sm:h-[500px] md:h-[620px] lg:h-[680px] rounded-full border border-[#DCD6CA]/80"
+              >
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-champagne shadow-xs" />
+              </motion.div>
+
+              {/* Inner Tilted Elliptical Ring */}
+              <div
+                style={{ transform: 'rotateX(64deg)' }}
+                className="absolute w-[380px] sm:w-[520px] md:w-[660px] lg:w-[720px] h-[380px] sm:h-[520px] md:h-[660px] lg:h-[720px] rounded-full border border-[#E6E0D6]/70"
+              />
+
+              {/* Floating Pearl Sphere */}
+              <motion.div
+                animate={{
+                  y: [-8, 8, -8],
+                }}
+                transition={{
+                  duration: 6.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="relative w-[280px] sm:w-[380px] md:w-[440px] h-[280px] sm:h-[380px] md:h-[440px] opacity-90 drop-shadow-[0_24px_55px_rgba(0,0,0,0.06)]"
+              >
+                <PearlSphere size="100%" />
+              </motion.div>
             </motion.div>
 
-            {/* Inner Tilted Elliptical Ring */}
-            <div
-              style={{ transform: 'rotateX(64deg)' }}
-              className="absolute w-[340px] sm:w-[460px] md:w-[540px] h-[340px] sm:h-[460px] md:h-[540px] rounded-full border border-[#E6E0D6] pointer-events-none"
-            />
-
-            {/* Floating Pearl Sphere */}
+            {/* Foreground Content: Layered Directly On Top of The Orb & Video Visual */}
             <motion.div
-              animate={{
-                y: [-8, 8, -8],
-              }}
-              transition={{
-                duration: 6.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="relative w-[210px] sm:w-[260px] md:w-[300px] h-[210px] sm:h-[260px] md:h-[300px] pointer-events-none drop-shadow-[0_20px_45px_rgba(0,0,0,0.08)]"
+              style={{ y: heroTextY, opacity: heroTextOpacity }}
+              className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl"
             >
-              <PearlSphere size="100%" />
+              {/* Majestic Headline - Never Blank! */}
+              <motion.h1
+                initial={{ opacity: 0, y: 22, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[clamp(2.75rem,8vw,6.25rem)] font-bold tracking-tight leading-[0.96] text-ink select-none pb-4 drop-shadow-[0_2px_16px_rgba(255,255,255,0.85)]"
+              >
+                Intelligence, refined.
+              </motion.h1>
+
+              {/* Narrative Subtitle with High Legibility */}
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                className="text-base sm:text-lg md:text-xl text-[#3A3630] font-normal max-w-2xl mx-auto leading-relaxed mt-2 mb-8 bg-surface/85 backdrop-blur-md px-6 py-2.5 rounded-pill border border-line/60 shadow-2xs"
+              >
+                Autonomous workflows, bespoke web platforms, cloud architecture, and compound systems. Engineered with quiet precision.
+              </motion.p>
+
+              {/* Action CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-wrap items-center justify-center gap-4"
+              >
+                <Magnetic>
+                  <Link
+                    href="/contact"
+                    className="luxury-btn-dark px-8 sm:px-9 py-3.5 sm:py-4 rounded-pill text-sm font-semibold tracking-wide shadow-sm min-h-[46px] inline-flex items-center gap-2.5"
+                  >
+                    <span>Start a conversation</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Magnetic>
+                <Magnetic>
+                  <Link
+                    href="/services"
+                    className="luxury-btn-light px-8 sm:px-9 py-3.5 sm:py-4 rounded-pill text-sm font-semibold tracking-wide shadow-2xs min-h-[46px] inline-flex items-center gap-2"
+                  >
+                    <span>Explore capabilities</span>
+                  </Link>
+                </Magnetic>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Hero Bottom Strip: Grounded Studio Credentials */}
-        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 mt-10 pt-6 border-t border-line/70 relative z-10">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 mt-6 pt-6 border-t border-line/70 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-xs text-muted font-medium tracking-wide">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-ink" />

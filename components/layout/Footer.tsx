@@ -160,11 +160,11 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Oversized Brand Watermark: ANVAYA on Line 1, AUTOMATION on Line 2 */}
+        {/* Oversized Brand Watermark: ANVAYA on Line 1, AUTOMATION on Line 2 (Identical font color and boldness) */}
         <div className="select-none text-left overflow-hidden pt-12 pb-6 border-b border-white/5">
-          <div className="font-bold tracking-tight uppercase leading-[0.88] text-[#1c1c1c] text-[clamp(2.75rem,9.5vw,120px)] space-y-1">
-            <div className="tracking-tight text-[#252525]">ANVAYA</div>
-            <div className="tracking-tight text-[#1a1a1a]">AUTOMATION</div>
+          <div className="font-bold tracking-tight uppercase leading-[0.88] text-[#222222] text-[clamp(2.75rem,9.5vw,120px)] space-y-1">
+            <div className="tracking-tight text-[#222222]">ANVAYA</div>
+            <div className="tracking-tight text-[#222222]">AUTOMATION</div>
           </div>
         </div>
 

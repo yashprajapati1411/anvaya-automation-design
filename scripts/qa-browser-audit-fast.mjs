@@ -141,7 +141,15 @@ async function runAudit() {
         });
 
         await client.send('Page.navigate', { url });
-        await new Promise(r => setTimeout(r, 800));
+        await new Promise(r => setTimeout(r, 700));
+        await client.send('Runtime.evaluate', {
+          expression: `
+            sessionStorage.setItem('anvaya_has_loaded', 'true');
+            const curtain = document.querySelector('[class*="z-[10000]"]');
+            if (curtain) curtain.style.display = 'none';
+          `
+        });
+        await new Promise(r => setTimeout(r, 300));
 
         // Evaluate layout metrics
         const evalRes = await client.send('Runtime.evaluate', {
@@ -224,7 +232,7 @@ async function runAudit() {
         });
 
         // Capture required screenshots for 1440 and 390
-        if ((vp.name === '1440' || vp.name === '390') && ['/', '/services', '/blog', '/contact'].includes(route)) {
+        if ((vp.name === '1440' || vp.name === '390') && ['/', '/services', '/services/ai-automation', '/blog', '/contact'].includes(route)) {
           const prefix = route === '/' ? 'home' : route.replace(/\//g, '_');
           
           // Hero (top of viewport)
@@ -237,11 +245,18 @@ async function runAudit() {
           fs.writeFileSync(path.join(screenshotsDir, `${prefix}-${vp.name}-hero.png`), Buffer.from(heroClip.data, 'base64'));
 
           // Footer
-          await client.send('Runtime.evaluate', { expression: 'if (window.lenis) { window.lenis.scrollTo(document.body.scrollHeight); } else { window.scrollTo(0, document.body.scrollHeight); }' });
-          await new Promise(r => setTimeout(r, 400));
+          await client.send('Runtime.evaluate', { expression: `
+            const footerEl = document.querySelector('footer');
+            if (footerEl) {
+              if (window.lenis) {
+                window.lenis.scrollTo(footerEl, { immediate: true });
+              }
+              footerEl.scrollIntoView({ behavior: 'instant', block: 'end' });
+            }
+          ` });
+          await new Promise(r => setTimeout(r, 600));
           const footerClip = await client.send('Page.captureScreenshot', {
             format: 'png',
-            clip: { x: 0, y: 0, width: vp.width, height: Math.min(vp.height, 800), scale: 1 }
           });
           fs.writeFileSync(path.join(screenshotsDir, `${prefix}-${vp.name}-footer.png`), Buffer.from(footerClip.data, 'base64'));
         }

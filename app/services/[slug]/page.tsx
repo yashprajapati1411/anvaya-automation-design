@@ -51,54 +51,58 @@ export default function ServiceDetailPage() {
           </Link>
         </div>
 
-        {/* Hero Header */}
+        {/* Editorial Split Header (Compact image matching blog detail, no oversized banner) */}
         <FadeUp>
-          <div className="quiet-tag mb-4">{service.category} · Discipline {service.number}</div>
-          <h1 className="text-[clamp(2.5rem,6.5vw,5.25rem)] font-bold tracking-tight text-ink leading-[1.02] pb-2">
-            {service.title}
-          </h1>
-          <p className="mt-5 text-muted text-base sm:text-xl max-w-3xl leading-relaxed font-light">
-            {service.description}
-          </p>
+          <div className="pb-12 mb-10 border-b border-line">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column (8 cols): Category, Title, Description, CTA */}
+              <div className="lg:col-span-8">
+                <div className="quiet-tag mb-4">{service.category} · Discipline {service.number}</div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink leading-[1.04] pb-2">
+                  {service.title}
+                </h1>
+                <p className="mt-4 text-muted text-base sm:text-lg max-w-2xl leading-relaxed font-light">
+                  {service.description}
+                </p>
 
-          <div className="mt-8 flex items-center gap-4">
-            <Magnetic>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2.5 bg-ink text-ivory px-8 py-3.5 rounded-pill text-sm font-semibold tracking-wide shadow-sm hover:bg-neutral-800 transition-all select-none min-h-[46px]"
-              >
-                <span>Start a project</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Magnetic>
+                <div className="mt-8 flex items-center gap-4">
+                  <Magnetic>
+                    <Link
+                      href="/contact"
+                      className="luxury-btn-dark inline-flex items-center gap-2.5 px-8 py-3.5 rounded-pill text-sm font-semibold tracking-wide shadow-sm min-h-[46px]"
+                    >
+                      <span>Start a project</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </Magnetic>
+                </div>
+              </div>
+
+              {/* Right Column (4 cols): Sleek Compact Editorial Card matching Blog post style */}
+              <div className="lg:col-span-4 flex justify-center lg:justify-end">
+                <div className="w-full max-w-[380px] h-48 sm:h-56 rounded-[24px] overflow-hidden border border-line bg-card shadow-sm relative group">
+                  <img
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-ivory">
+                    <span className="w-8 h-8 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center font-serif text-base text-ink shadow-xs">
+                      {service.iconSymbol}
+                    </span>
+                    <span className="text-[11px] font-semibold tracking-[0.14em] uppercase bg-surface/90 backdrop-blur-md px-3 py-1 rounded-pill text-ink border border-line shadow-xs">
+                      Discipline {service.number}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </FadeUp>
 
-        {/* Thematic Hero Feature Image */}
-        <div className="mt-14 h-72 sm:h-96 md:h-[420px] w-full rounded-[32px] overflow-hidden relative border border-line bg-neutral-200 shadow-sm">
-          <img
-            src={service.imageUrl}
-            alt={service.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
-          <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-ivory">
-            <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center font-serif text-xl text-ink">
-                {service.iconSymbol}
-              </span>
-              <span className="text-lg sm:text-xl font-bold tracking-tight drop-shadow-sm">
-                {service.title} Engineering
-              </span>
-            </div>
-            <span className="text-xs font-semibold tracking-[0.14em] uppercase bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-pill text-ink border border-line">
-              Active Discipline
-            </span>
-          </div>
-        </div>
-
         {/* What We Deliver & Disciplines Split */}
-        <section className="mt-20 pt-16 border-t border-line">
+        <section className="mt-8 pt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
               <div className="quiet-tag mb-3">Core Scope</div>

@@ -1,9 +1,29 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from '@studio-freight/lenis';
 
 export const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const pathname = usePathname();
+  const lenisRef = useRef<Lenis | null>(null);
+
+  // Whenever route changes, scroll immediately to the very top of the page!
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      }
+      // Microtask & timer fallback to prevent any race condition with Next.js router
+      const timer = setTimeout(() => {
+        window.scrollTo(0, 0);
+        lenisRef.current?.scrollTo(0, { immediate: true });
+      }, 40);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
+
   useEffect(() => {
     // Respect prefers-reduced-motion
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -19,6 +39,8 @@ export const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({ children
       touchMultiplier: 2,
     });
 
+    lenisRef.current = lenis;
+
     if (typeof window !== 'undefined') {
       (window as any).lenis = lenis;
     }
@@ -33,6 +55,7 @@ export const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({ children
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
