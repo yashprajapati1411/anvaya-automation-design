@@ -13,47 +13,43 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
-  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const scrolled = currentScrollY > 30;
+      const scrolled = currentScrollY > 20;
       setIsScrolled(scrolled);
-
-      // Determine scroll direction
-      if (currentScrollY > lastScrollYRef.current + 6 && currentScrollY > 70) {
-        setScrollDirection('down');
-      } else if (currentScrollY < lastScrollYRef.current - 6) {
-        setScrollDirection('up');
-      }
-
-      lastScrollYRef.current = currentScrollY;
+      // Immediately hide when scrolling down unless cursor is actively inside the top 75px
+      setIsHovered(false);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Reveal navbar only when mouse is pointed within top 80px of screen
-      if (e.clientY <= 80) {
+      // ONLY reveal navbar when cursor is pointed within the top 75px of the viewport
+      if (e.clientY <= 75) {
         setIsHovered(true);
       } else {
         setIsHovered(false);
       }
     };
 
-    // Initial check
-    const initialScrolled = window.scrollY > 30;
-    setIsScrolled(initialScrolled);
-    lastScrollYRef.current = window.scrollY;
+    const handleMouseLeaveWindow = () => {
+      // If cursor leaves the browser window, immediately hide the hovered navbar
+      setIsHovered(false);
+    };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    // Initial check
+    setIsScrolled(window.scrollY > 20);
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeaveWindow);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeaveWindow);
     };
   }, []);
 
@@ -83,13 +79,11 @@ export const Navbar: React.FC = () => {
     { label: 'Contact', href: '/contact' },
   ];
 
-  // Navbar vanishes on scroll-down and only appears when scrolling up, hovering top area, or at top of page
-  const isVisible =
-    !isScrolled ||
-    isHovered ||
-    mobileMenuOpen ||
-    isFocused ||
-    scrollDirection === 'up';
+  // Strictly controlled visibility:
+  // - Top of page (!isScrolled): Visible
+  // - Scrolled: STRICTLY HIDDEN UNLESS cursor is actively pointing into top navbar area (isHovered)
+  // - Mobile menu open or keyboard focused: Visible
+  const isVisible = !isScrolled || isHovered || mobileMenuOpen || isFocused;
 
   return (
     <>
@@ -97,7 +91,7 @@ export const Navbar: React.FC = () => {
       <motion.header
         initial={{ y: 0, opacity: 1 }}
         animate={{
-          y: isVisible ? 0 : -110,
+          y: isVisible ? 0 : -120,
           opacity: isVisible ? 1 : 0,
         }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -113,11 +107,15 @@ export const Navbar: React.FC = () => {
       >
         <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between">
-            {/* Logo: Anvaya Automation */}
+            {/* Logo: Anvaya Automation with luxury glass backdrop when hovering while scrolled */}
             <div className="pointer-events-auto">
               <Link
                 href="/"
-                className="font-bold text-2xl lg:text-[26px] tracking-tight text-ink hover:opacity-85 transition-opacity select-none whitespace-nowrap"
+                className={`font-bold text-2xl lg:text-[26px] tracking-tight text-ink hover:opacity-85 transition-all select-none whitespace-nowrap inline-flex items-center ${
+                  isScrolled
+                    ? 'bg-surface/95 backdrop-blur-md px-5 py-2 rounded-pill border border-line shadow-xs'
+                    : ''
+                }`}
               >
                 Anvaya Automation
               </Link>

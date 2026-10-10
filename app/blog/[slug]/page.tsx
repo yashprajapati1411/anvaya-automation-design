@@ -167,29 +167,33 @@ export default function BlogDetailPage({ params }: Props) {
               {/* Article Content Sections */}
               <div className="space-y-12 text-base sm:text-lg leading-relaxed text-ink font-light">
                 {post.content.sections.map((section) => (
-                  <section key={section.id} id={section.id} className="scroll-mt-32">
-                    <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink mb-5">
-                      {section.title}
-                    </h2>
-                    <div className="space-y-5 text-ink">
-                      {section.paragraphs.map((para, i) => (
-                        <p key={i} className="leading-relaxed">
-                          {para}
-                        </p>
-                      ))}
-                    </div>
-                  </section>
+                  <FadeUp key={section.id}>
+                    <section id={section.id} className="scroll-mt-32">
+                      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink mb-5">
+                        {section.title}
+                      </h2>
+                      <div className="space-y-5 text-ink">
+                        {section.paragraphs.map((para, i) => (
+                          <p key={i} className="leading-relaxed">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
+                    </section>
+                  </FadeUp>
                 ))}
 
                 {/* Conclusion Block */}
-                <div className="p-8 rounded-[24px] bg-card border border-line mt-12">
-                  <h3 className="text-xl font-bold tracking-tight text-ink mb-3">
-                    Conclusion &amp; Key Takeaway
-                  </h3>
-                  <p className="text-base text-muted font-normal leading-relaxed">
-                    {post.content.conclusion}
-                  </p>
-                </div>
+                <FadeUp>
+                  <div className="p-8 rounded-[24px] bg-card border border-line mt-12">
+                    <h3 className="text-xl font-bold tracking-tight text-ink mb-3">
+                      Conclusion &amp; Key Takeaway
+                    </h3>
+                    <p className="text-base text-muted font-normal leading-relaxed">
+                      {post.content.conclusion}
+                    </p>
+                  </div>
+                </FadeUp>
               </div>
             </div>
 

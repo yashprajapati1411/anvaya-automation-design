@@ -52,12 +52,18 @@ export default function AboutPage() {
             </div>
 
             {/* Signature Object: Pearl Sphere + Hairline Ring */}
-            <div className="lg:col-span-5 flex items-center justify-center relative min-h-[360px] sm:min-h-[440px]">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.88, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 flex items-center justify-center relative min-h-[360px] sm:min-h-[440px]"
+            >
               <div className="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] flex items-center justify-center">
                 <HairlineRing size={360} className="scale-90 sm:scale-100" />
                 <PearlSphere size={240} className="scale-90 sm:scale-100" />
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 

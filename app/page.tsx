@@ -343,7 +343,8 @@ export default function HomePage() {
           </FadeUp>
 
           {/* Interactive Phase Selector */}
-          <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <FadeUp delay={0.1}>
+            <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Phase Nav Tabs */}
             <div className="lg:col-span-5 space-y-3">
               {projectApproachStages.map((phase, idx) => {
@@ -424,8 +425,9 @@ export default function HomePage() {
               </AnimatePresence>
             </div>
           </div>
-        </div>
-      </section>
+        </FadeUp>
+      </div>
+    </section>
 
       {/* ================= 5. TRUSTED BY OUR CLIENTS (UNIQUE TEMPLATE WITH REVIEWS) ================= */}
       <section className="py-24 md:py-32 border-t border-line bg-surface/60">
@@ -579,34 +581,36 @@ export default function HomePage() {
       {/* ================= 7. PROJECT INITIATION CTA ================= */}
       <section className="relative text-center py-28 md:py-36 border-t border-line overflow-hidden bg-bg">
         <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
-          <div className="max-w-3xl mx-auto">
-            <div className="quiet-tag mb-4">Project Initiation</div>
-            <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tight text-ink leading-[1.02] pb-2">
-              Ready to make your business effortless?
-            </h2>
-            <p className="mt-5 text-muted text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-light">
-              Let&apos;s evaluate your existing workflows and blueprint an automated growth engine.
-            </p>
+          <FadeUp>
+            <div className="max-w-3xl mx-auto">
+              <div className="quiet-tag mb-4">Project Initiation</div>
+              <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tight text-ink leading-[1.02] pb-2">
+                Ready to make your business effortless?
+              </h2>
+              <p className="mt-5 text-muted text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-light">
+                Let&apos;s evaluate your existing workflows and blueprint an automated growth engine.
+              </p>
 
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <Magnetic>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                <Magnetic>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2.5 bg-ink text-ivory px-9 py-4 rounded-pill text-sm font-semibold tracking-wide shadow-subtle hover:bg-neutral-800 transition-all select-none min-h-[48px]"
+                    aria-label="Start a project with Anvaya Automation"
+                  >
+                    <span>Start a project</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Magnetic>
                 <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2.5 bg-ink text-ivory px-9 py-4 rounded-pill text-sm font-semibold tracking-wide shadow-subtle hover:bg-neutral-800 transition-all select-none min-h-[48px]"
-                  aria-label="Start a project with Anvaya Automation"
+                  href="/services"
+                  className="inline-flex items-center gap-2 border border-ink/30 text-ink px-8 py-4 rounded-pill text-sm font-medium hover:border-ink transition-all min-h-[48px]"
                 >
-                  <span>Start a project</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>View all services</span>
                 </Link>
-              </Magnetic>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 border border-ink/30 text-ink px-8 py-4 rounded-pill text-sm font-medium hover:border-ink transition-all min-h-[48px]"
-              >
-                <span>View all services</span>
-              </Link>
+              </div>
             </div>
-          </div>
+          </FadeUp>
         </div>
       </section>
     </div>
