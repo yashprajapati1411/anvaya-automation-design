@@ -34,13 +34,29 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setResult(null);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = (formData.get('name') as string) || '';
+    const email = (formData.get('email') as string) || '';
+    const company = (formData.get('company') as string) || '';
+    const message = (formData.get('message') as string) || '';
+    const services = selectedServices.join(', ');
+
     formData.delete('services');
     selectedServices.forEach((s) => formData.append('services', s));
 
     const res = await submitContactAction(null, formData);
     setIsSubmitting(false);
     setResult(res);
+
+    if (res.success) {
+      // Directly open email to contact@anvayaautomation.com
+      const subject = encodeURIComponent(`Project Inquiry: ${name} (${company || 'New Client'})`);
+      const body = encodeURIComponent(
+        `Dear Anvaya Automation Team,\n\nI would like to discuss a project.\n\nName: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nInterested Services: ${services}\n\nProject Details:\n${message}\n\nBest regards,\n${name}`
+      );
+      window.location.href = `mailto:contact@anvayaautomation.com?subject=${subject}&body=${body}`;
+    }
   };
 
   return (
@@ -103,7 +119,7 @@ export default function ContactPage() {
                   <div>
                     <span className="text-[12px] uppercase tracking-[0.14em] text-muted block font-semibold">Location</span>
                     <span className="text-sm sm:text-base text-ink font-light">
-                      Mumbai &amp; Bangalore, India (Partnering with global clients)
+                      Ahmedabad, Gujarat, India (Partnering with global clients)
                     </span>
                   </div>
                 </div>

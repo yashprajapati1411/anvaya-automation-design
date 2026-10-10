@@ -55,8 +55,8 @@ export default function ServiceDetailPage() {
         <FadeUp>
           <div className="pb-12 mb-10 border-b border-line">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Left Column (8 cols): Category, Title, Description, CTA */}
-              <div className="lg:col-span-8">
+              {/* Left Column (7 cols): Category, Title, Description, CTA */}
+              <div className="lg:col-span-7">
                 <div className="quiet-tag mb-4">{service.category} · Discipline {service.number}</div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink leading-[1.04] pb-2">
                   {service.title}
@@ -78,20 +78,20 @@ export default function ServiceDetailPage() {
                 </div>
               </div>
 
-              {/* Right Column (4 cols): Sleek Compact Editorial Card matching Blog post style */}
-              <div className="lg:col-span-4 flex justify-center lg:justify-end">
-                <div className="w-full max-w-[380px] h-48 sm:h-56 rounded-[24px] overflow-hidden border border-line bg-card shadow-sm relative group">
+              {/* Right Column (5 cols): Expanded Premium Photo Card */}
+              <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                <div className="w-full max-w-[500px] h-64 sm:h-72 md:h-80 lg:h-[340px] rounded-[28px] overflow-hidden border border-line bg-card shadow-md relative group">
                   <img
                     src={service.imageUrl}
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-ivory">
-                    <span className="w-8 h-8 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center font-serif text-base text-ink shadow-xs">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-ivory">
+                    <span className="w-9 h-9 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center font-serif text-lg text-ink shadow-sm">
                       {service.iconSymbol}
                     </span>
-                    <span className="text-[11px] font-semibold tracking-[0.14em] uppercase bg-surface/90 backdrop-blur-md px-3 py-1 rounded-pill text-ink border border-line shadow-xs">
+                    <span className="text-[11px] font-semibold tracking-[0.14em] uppercase bg-surface/90 backdrop-blur-md px-3.5 py-1.5 rounded-pill text-ink border border-line shadow-sm">
                       Discipline {service.number}
                     </span>
                   </div>

@@ -56,15 +56,6 @@ export default function AboutPage() {
               <div className="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] flex items-center justify-center">
                 <HairlineRing size={360} className="scale-90 sm:scale-100" />
                 <PearlSphere size={240} className="scale-90 sm:scale-100" />
-                {/* Micro Pill */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full border border-line shadow-sm text-[12px] font-semibold tracking-[0.14em] uppercase text-ink"
-                >
-                  ◎ ZERO RESIDUAL FRICTION
-                </motion.div>
               </div>
             </div>
           </div>

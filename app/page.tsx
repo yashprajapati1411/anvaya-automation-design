@@ -51,145 +51,151 @@ export default function HomePage() {
 
   return (
     <div className="relative overflow-hidden w-full">
-      {/* ================= 1. REDESIGNED HERO SECTION (BACKGROUND VIDEO + LAYERED SPHERE HEADLINE + SCROLL ANIMATION) ================= */}
+      {/* ================= 1. HERO SECTION (EXACT DESIGN MATCH WITH ORBITAL PEARL SPHERE & 4 FLOATING BADGES) ================= */}
       <section
         ref={heroRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className="relative min-h-[100svh] w-full flex flex-col justify-between pt-28 md:pt-36 pb-12 overflow-hidden bg-bg"
+        className="relative min-h-[calc(100svh-80px)] w-full flex items-center pt-28 md:pt-36 pb-16 overflow-hidden bg-bg"
       >
-        {/* Continuous Ambient Background Video Loop (Theme-matching quiet luxury) */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover opacity-50 mix-blend-multiply"
-          >
-            <source src="/hero-ambient.mp4" type="video/mp4" />
-          </video>
-          {/* Subtle Champagne & Ivory Vignette Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F2EE]/50 via-transparent to-[#F4F2EE] pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#F4F2EE]/40 via-transparent to-[#F4F2EE]/40 pointer-events-none" />
-        </div>
-
-        {/* Soft Ambient Champagne Halo Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[550px] rounded-full bg-gradient-to-b from-[#C9B99A]/20 via-[#EAE4D7]/25 to-transparent blur-3xl pointer-events-none z-0" />
-
-        {/* Hero Main Content Area: Centered Stage with Sphere directly behind text */}
-        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10 flex-1 flex flex-col justify-center items-center">
-          <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center justify-center min-h-[62vh] py-6 sm:py-10">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10 flex-1 flex items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
             
-            {/* Luminous Pearl Sphere & Celestial Orbital Centerpiece Directly Behind Headline */}
-            <motion.div
-              style={{
-                y: heroSphereY,
-                scale: heroSphereScale,
-                rotateX: tiltX,
-                rotateY: tiltY,
-              }}
-              className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 [perspective:1000px]"
-            >
-              {/* Outer Slow-Rotating Hairline Celestial Orbit Ring */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-                className="absolute w-[360px] sm:w-[500px] md:w-[620px] lg:w-[680px] h-[360px] sm:h-[500px] md:h-[620px] lg:h-[680px] rounded-full border border-[#DCD6CA]/80"
-              >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-champagne shadow-xs" />
-              </motion.div>
-
-              {/* Inner Tilted Elliptical Ring */}
-              <div
-                style={{ transform: 'rotateX(64deg)' }}
-                className="absolute w-[380px] sm:w-[520px] md:w-[660px] lg:w-[720px] h-[380px] sm:h-[520px] md:h-[660px] lg:h-[720px] rounded-full border border-[#E6E0D6]/70"
-              />
-
-              {/* Floating Pearl Sphere */}
-              <motion.div
-                animate={{
-                  y: [-8, 8, -8],
-                }}
-                transition={{
-                  duration: 6.5,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-                className="relative w-[280px] sm:w-[380px] md:w-[440px] h-[280px] sm:h-[380px] md:h-[440px] opacity-90 drop-shadow-[0_24px_55px_rgba(0,0,0,0.06)]"
-              >
-                <PearlSphere size="100%" />
-              </motion.div>
-            </motion.div>
-
-            {/* Foreground Content: Layered Directly On Top of The Orb & Video Visual */}
-            <motion.div
-              style={{ y: heroTextY, opacity: heroTextOpacity }}
-              className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl"
-            >
-              {/* Majestic Headline - Never Blank! */}
+            {/* LEFT COLUMN: HERO HEADLINE & EDITORIAL CONTENT */}
+            <div className="lg:col-span-5 flex flex-col justify-center text-left">
               <motion.h1
-                initial={{ opacity: 0, y: 22, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[clamp(2.75rem,8vw,6.25rem)] font-bold tracking-tight leading-[0.96] text-ink select-none pb-4 drop-shadow-[0_2px_16px_rgba(255,255,255,0.85)]"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[clamp(2.75rem,5.5vw,5.5rem)] font-extrabold tracking-tight leading-[0.98] text-ink select-none"
               >
-                Intelligence, refined.
+                Intelligence,<br />
+                refined for<br />
+                real business<span className="inline-block w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-[#A38F78] ml-1.5 align-baseline" />
               </motion.h1>
 
-              {/* Narrative Subtitle with High Legibility */}
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                className="text-base sm:text-lg md:text-xl text-[#3A3630] font-normal max-w-2xl mx-auto leading-relaxed mt-2 mb-8 bg-surface/85 backdrop-blur-md px-6 py-2.5 rounded-pill border border-line/60 shadow-2xs"
+                transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-6 text-base sm:text-lg md:text-xl text-[#5A564F] font-normal max-w-xl leading-relaxed"
               >
-                Autonomous workflows, bespoke web platforms, cloud architecture, and compound systems. Engineered with quiet precision.
+                We build AI automation, modern web applications, cloud infrastructure and digital growth systems that help businesses work smarter and scale faster.
               </motion.p>
 
-              {/* Action CTAs */}
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-wrap items-center justify-center gap-4"
+                transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-8 sm:mt-10 flex items-center"
               >
                 <Magnetic>
                   <Link
-                    href="/contact"
-                    className="luxury-btn-dark px-8 sm:px-9 py-3.5 sm:py-4 rounded-pill text-sm font-semibold tracking-wide shadow-sm min-h-[46px] inline-flex items-center gap-2.5"
+                    href="/services"
+                    className="bg-ink text-ivory hover:bg-neutral-800 transition-all rounded-pill px-8 sm:px-9 py-4 font-semibold text-sm sm:text-base inline-flex items-center gap-3 shadow-sm select-none min-h-[48px]"
                   >
-                    <span>Start a conversation</span>
+                    <span>Explore our services</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </Magnetic>
-                <Magnetic>
-                  <Link
-                    href="/services"
-                    className="luxury-btn-light px-8 sm:px-9 py-3.5 sm:py-4 rounded-pill text-sm font-semibold tracking-wide shadow-2xs min-h-[46px] inline-flex items-center gap-2"
-                  >
-                    <span>Explore capabilities</span>
-                  </Link>
-                </Magnetic>
               </motion.div>
-            </motion.div>
-          </div>
-        </div>
+            </div>
 
-        {/* Hero Bottom Strip: Grounded Studio Credentials */}
-        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 mt-6 pt-6 border-t border-line/70 relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-xs text-muted font-medium tracking-wide">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-ink" />
-              <span>5 Core Engineering Disciplines</span>
-            </div>
-            <div className="flex items-center gap-2 sm:justify-center">
-              <span className="w-1.5 h-1.5 rounded-full bg-champagne" />
-              <span>Zero Vendor Lock-in · Full IP Ownership</span>
-            </div>
-            <div className="flex items-center gap-2 sm:justify-end">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#8C7A5B]" />
-              <span>Mumbai &amp; Bangalore · Global Delivery</span>
+            {/* RIGHT COLUMN: ORBITAL PEARL SPHERE & 4 FLOATING BADGES (MATCHING REFERENCE IMAGE) */}
+            <div className="lg:col-span-7 flex items-center justify-center relative w-full select-none py-4 sm:py-8">
+              <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] md:w-[540px] md:h-[540px] lg:w-[600px] lg:h-[600px] flex items-center justify-center">
+                
+                {/* Ambient Soft Radial Champagne Halo behind sphere */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#EBE4D5]/60 via-[#F3EFE6]/40 to-transparent blur-2xl pointer-events-none" />
+
+                {/* Concentric Hairline Orbital Rings */}
+                <div className="absolute w-[88%] h-[88%] rounded-full border border-[#DDD7CD]/75 pointer-events-none" />
+                <div className="absolute w-[72%] h-[72%] rounded-full border border-[#DDD7CD]/65 pointer-events-none" />
+                <div className="absolute w-[56%] h-[56%] rounded-full border border-[#DDD7CD]/55 pointer-events-none" />
+                <div className="absolute w-[42%] h-[42%] rounded-full border border-[#DDD7CD]/45 pointer-events-none" />
+
+                {/* Satellite Metallic Beads (Placed along orbital paths matching image) */}
+                {/* Bead 1 (Top-right outer orbit): ~22px */}
+                <div
+                  className="absolute top-[8%] right-[22%] w-5 h-5 sm:w-6 sm:h-6 rounded-full shadow-[0_6px_14px_rgba(140,120,90,0.25)] pointer-events-none"
+                  style={{ background: 'radial-gradient(circle at 35% 25%, #FFF0D6 0%, #C9B99A 50%, #857252 100%)' }}
+                />
+                {/* Bead 2 (Top-left inner orbit): ~11px */}
+                <div
+                  className="absolute top-[28%] left-[24%] w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full shadow-sm pointer-events-none"
+                  style={{ background: 'radial-gradient(circle at 35% 25%, #FFF0D6 0%, #C9B99A 50%, #857252 100%)' }}
+                />
+                {/* Bead 3 (Far-left middle orbit): ~13px */}
+                <div
+                  className="absolute top-[48%] left-[8%] w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full shadow-sm pointer-events-none"
+                  style={{ background: 'radial-gradient(circle at 35% 25%, #FFF0D6 0%, #C9B99A 50%, #857252 100%)' }}
+                />
+                {/* Bead 4 (Right-center middle orbit): ~11px */}
+                <div
+                  className="absolute top-[54%] right-[16%] w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full shadow-sm pointer-events-none"
+                  style={{ background: 'radial-gradient(circle at 35% 25%, #FFF0D6 0%, #C9B99A 50%, #857252 100%)' }}
+                />
+                {/* Bead 5 (Bottom-left outer orbit): ~24px */}
+                <div
+                  className="absolute bottom-[14%] left-[28%] w-5 h-5 sm:w-6 sm:h-6 rounded-full shadow-[0_6px_16px_rgba(140,120,90,0.25)] pointer-events-none"
+                  style={{ background: 'radial-gradient(circle at 35% 25%, #FFF0D6 0%, #C9B99A 50%, #857252 100%)' }}
+                />
+                {/* Bead 6 (Bottom outer orbit): ~14px */}
+                <div
+                  className="absolute bottom-[20%] right-[32%] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full shadow-sm pointer-events-none"
+                  style={{ background: 'radial-gradient(circle at 35% 25%, #FFF0D6 0%, #C9B99A 50%, #857252 100%)' }}
+                />
+
+                {/* Central High-Fidelity Pearl Sphere */}
+                <motion.div
+                  animate={{ y: [-7, 7, -7] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+                  className="relative w-[190px] h-[190px] sm:w-[260px] sm:h-[260px] md:w-[310px] md:h-[310px] lg:w-[350px] lg:h-[350px] rounded-full pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 38% 30%, #FFFFFF 0%, #FAF8F3 25%, #EDE7DD 55%, #D7CEC2 80%, #BDAFA0 100%)',
+                    boxShadow: '0 45px 95px rgba(160, 145, 125, 0.22), 0 16px 36px rgba(0, 0, 0, 0.05)',
+                  }}
+                />
+
+                {/* 4 FLOATING GLASSMORPHISM BADGES (EXACT POSITIONS FROM REFERENCE IMAGE) */}
+                {/* 1. AI AUTOMATION (Top) */}
+                <motion.div
+                  animate={{ y: [-4, 4, -4] }}
+                  transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute top-[8%] sm:top-[10%] left-[20%] sm:left-[24%] bg-white/88 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/80 shadow-[0_6px_20px_rgba(0,0,0,0.05)] text-[10px] sm:text-[12px] font-semibold tracking-[0.14em] uppercase text-[#3A3630] flex items-center gap-2 whitespace-nowrap z-20"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B3A086] flex-shrink-0" />
+                  <span>AI AUTOMATION</span>
+                </motion.div>
+
+                {/* 2. WEB APPLICATIONS (Right) */}
+                <motion.div
+                  animate={{ y: [4, -4, 4] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                  className="absolute top-[38%] sm:top-[40%] right-[-8px] sm:right-[0%] lg:right-[-12px] bg-white/88 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/80 shadow-[0_6px_20px_rgba(0,0,0,0.05)] text-[10px] sm:text-[12px] font-semibold tracking-[0.14em] uppercase text-[#3A3630] flex items-center gap-2 whitespace-nowrap z-20"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B3A086] flex-shrink-0" />
+                  <span>WEB APPLICATIONS</span>
+                </motion.div>
+
+                {/* 3. CLOUD INFRASTRUCTURE (Bottom-Left) */}
+                <motion.div
+                  animate={{ y: [-5, 5, -5] }}
+                  transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                  className="absolute bottom-[24%] sm:bottom-[25%] left-[-4px] sm:left-[4%] lg:left-[2%] bg-white/88 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/80 shadow-[0_6px_20px_rgba(0,0,0,0.05)] text-[10px] sm:text-[12px] font-semibold tracking-[0.14em] uppercase text-[#3A3630] flex items-center gap-2 whitespace-nowrap z-20"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B3A086] flex-shrink-0" />
+                  <span>CLOUD INFRASTRUCTURE</span>
+                </motion.div>
+
+                {/* 4. GROWTH & SEO (Bottom-Right) */}
+                <motion.div
+                  animate={{ y: [4, -4, 4] }}
+                  transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+                  className="absolute bottom-[14%] sm:bottom-[16%] right-[2%] sm:right-[6%] lg:right-[4%] bg-white/88 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/80 shadow-[0_6px_20px_rgba(0,0,0,0.05)] text-[10px] sm:text-[12px] font-semibold tracking-[0.14em] uppercase text-[#3A3630] flex items-center gap-2 whitespace-nowrap z-20"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B3A086] flex-shrink-0" />
+                  <span>GROWTH &amp; SEO</span>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -200,7 +206,7 @@ export default function HomePage() {
         <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeUp>
             <div className="quiet-tag mb-4">What We Do</div>
-            <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight leading-[1.04] max-w-4xl text-coffee pb-2">
+            <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight leading-[1.04] max-w-4xl text-ink pb-2">
               Everything your business needs to scale.
             </h2>
             <p className="mt-4 text-muted text-base sm:text-lg max-w-3xl leading-relaxed font-light">

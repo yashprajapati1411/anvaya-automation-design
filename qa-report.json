@@ -11,13 +11,13 @@
     "overlapCount": 0,
     "fonts": [
       "__Inter_Tight_c233fe 16px/24px",
-      "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 24px/32px",
       "__Inter_Tight_c233fe 14px/21px",
-      "__Inter_Tight_c233fe 44px/42.24px",
+      "__Inter_Tight_c233fe 12px/16px",
+      "__Inter_Tight_c233fe 44px/43.12px",
       "__Inter_Tight_c233fe 16px/26px",
-      "__Inter_Tight_c233fe 14px/20px"
+      "__Inter_Tight_c233fe 14px/20px",
+      "__Inter_Tight_c233fe 10px/15px"
     ],
     "status": "PASS"
   },
@@ -36,10 +36,10 @@
       "__Inter_Tight_c233fe 24px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 44px/42.24px",
+      "__Inter_Tight_c233fe 44px/43.12px",
       "__Inter_Tight_c233fe 16px/26px",
       "__Inter_Tight_c233fe 14px/20px",
-      "__Inter_Tight_c233fe 13px/13px"
+      "__Inter_Tight_c233fe 10px/15px"
     ],
     "status": "PASS"
   },
@@ -58,9 +58,9 @@
       "__Inter_Tight_c233fe 24px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 61.44px/58.9824px",
+      "__Inter_Tight_c233fe 44px/43.12px",
       "__Inter_Tight_c233fe 20px/28px",
-      "__Inter_Tight_c233fe 14px/20px",
+      "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
     "status": "PASS"
@@ -80,9 +80,9 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 81.92px/78.6432px",
+      "__Inter_Tight_c233fe 56.32px/55.1936px",
       "__Inter_Tight_c233fe 20px/28px",
-      "__Inter_Tight_c233fe 14px/20px",
+      "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
     "status": "PASS"
@@ -102,9 +102,9 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 100px/96px",
+      "__Inter_Tight_c233fe 70.4px/68.992px",
       "__Inter_Tight_c233fe 20px/28px",
-      "__Inter_Tight_c233fe 14px/20px",
+      "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
     "status": "PASS"
@@ -124,9 +124,9 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 100px/96px",
+      "__Inter_Tight_c233fe 75.13px/73.6274px",
       "__Inter_Tight_c233fe 20px/28px",
-      "__Inter_Tight_c233fe 14px/20px",
+      "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
     "status": "PASS"
@@ -146,9 +146,9 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 100px/96px",
+      "__Inter_Tight_c233fe 79.2px/77.616px",
       "__Inter_Tight_c233fe 20px/28px",
-      "__Inter_Tight_c233fe 14px/20px",
+      "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
     "status": "PASS"
@@ -168,9 +168,9 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 100px/96px",
+      "__Inter_Tight_c233fe 88px/86.24px",
       "__Inter_Tight_c233fe 20px/28px",
-      "__Inter_Tight_c233fe 14px/20px",
+      "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
     "status": "PASS"

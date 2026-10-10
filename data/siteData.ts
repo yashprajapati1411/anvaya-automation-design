@@ -9,7 +9,7 @@ export const siteConfig = {
   secondaryPhone: '+91 9624865617',
   whatsappNumber: '9313220796',
   whatsappUrl: 'https://wa.me/919313220796',
-  address: 'Mumbai & Bangalore, India (Partnering with global clients)',
+  address: 'Ahmedabad, Gujarat, India (Partnering with global clients)',
   workingHours: 'Mon–Sat, 10:00 AM – 7:00 PM IST',
   socials: [
     { name: 'LinkedIn', url: 'https://linkedin.com/company/anvaya-automation' },
