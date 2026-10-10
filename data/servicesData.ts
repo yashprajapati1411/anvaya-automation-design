@@ -2,9 +2,10 @@ export interface ServiceDetail {
   slug: string;
   number: string;
   title: string;
-  emphasizedTitle: string; // for the Instrument Serif word
+  emphasizedTitle: string;
   category: 'AI' | 'Engineering' | 'Growth';
   iconSymbol: string;
+  imageUrl: string;
   summary: string;
   description: string;
   disciplines: string[];
@@ -22,7 +23,8 @@ export const servicesData: ServiceDetail[] = [
     emphasizedTitle: 'Automation',
     category: 'AI',
     iconSymbol: '◎',
-    summary: 'Workflows, agents and chatbots that quietly do the work.',
+    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+    summary: 'Autonomous workflows, agents and intelligent chatbots that quietly do the work.',
     description: 'We design and deploy autonomous agent swarms, intelligent document processing pipelines, and event-driven software bridges that eliminate repetitive human busywork without sacrificing precision.',
     disciplines: ['Workflow automation', 'Autonomous AI agents', 'CRM and lead routing', 'Intelligent document extraction'],
     deliverables: [
@@ -60,7 +62,8 @@ export const servicesData: ServiceDetail[] = [
     emphasizedTitle: 'Applications',
     category: 'Engineering',
     iconSymbol: '▭',
-    summary: 'SaaS, dashboards and portals built to last.',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    summary: 'SaaS platforms, executive dashboards and portals built for sub-second speed.',
     description: 'We engineer high-performance web software using Next.js, React, and TypeScript. Focused on sub-second interactions, calm aesthetic typography, and clean architectures that scale gracefully.',
     disciplines: ['SaaS platforms', 'Executive dashboards', 'Customer portals', 'E-commerce engines'],
     deliverables: [
@@ -90,30 +93,31 @@ export const servicesData: ServiceDetail[] = [
   {
     slug: 'mobile-development',
     number: '03',
-    title: 'Mobile Apps',
+    title: 'Mobile Development',
     emphasizedTitle: 'Mobile',
     category: 'Engineering',
     iconSymbol: '▯',
-    summary: 'iOS and Android, native feel.',
+    imageUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
+    summary: 'Bespoke iOS and Android mobile applications crafted for native responsiveness.',
     description: 'Bespoke mobile applications crafted with Flutter and React Native. Smooth 60fps animations, intuitive gesture handling, and offline-first data architectures that customers love using daily.',
     disciplines: ['iOS native apps', 'Android applications', 'Cross-platform Flutter', 'Offline synchronization'],
     deliverables: [
-      'Native-feel interface conforming to Apple HIG & Material 3',
-      'Robust offline caching and biometric authentication',
-      'Full App Store and Google Play deployment management',
-      'Push notification journeys and in-app analytics'
+      'Platform-native UI components conforming to Apple Human Interface and Material Design',
+      'Offline-first synchronization with conflict resolution',
+      'Push notification pipelines and deep-linking routing',
+      'Full App Store and Google Play deployment management'
     ],
     techStack: ['Flutter', 'React Native', 'Swift', 'Kotlin', 'Firebase', 'Supabase'],
     process: [
-      { step: '01', title: 'UX Flow', desc: 'Frictionless tap ergonomics and thumb-zone optimization.' },
-      { step: '02', title: 'Build', desc: 'Clean cross-platform architecture with shared state logic.' },
-      { step: '03', title: 'Test', desc: 'Rigorous battery, memory, and network stress tests on physical devices.' },
-      { step: '04', title: 'Release', desc: 'Handling App Store review compliance and continuous deployment.' }
+      { step: '01', title: 'User Flows', desc: 'Detailed user journeys and interaction wireframes designed for thumb navigation.' },
+      { step: '02', title: 'Architecture', desc: 'Offline-capable local storage schemas and secure token authentication.' },
+      { step: '03', title: 'Build', desc: 'Bimonthly TestFlight and internal track APK builds for continuous feedback.' },
+      { step: '04', title: 'App Store Submission', desc: 'Complete metadata, compliance verification, and store release.' }
     ],
     faqs: [
       {
-        question: 'Should we build cross-platform or separate native apps?',
-        answer: 'For 95% of businesses, modern Flutter or React Native provides an indistinguishable 60fps native feel while halving maintenance costs and accelerating time-to-market.'
+        question: 'Do you build native Swift/Kotlin or cross-platform?',
+        answer: 'We recommend cross-platform Flutter or React Native for 90% of business applications to reduce build costs and ensure feature parity across iOS and Android without sacrificing 60fps performance.'
       }
     ]
   },
@@ -121,29 +125,30 @@ export const servicesData: ServiceDetail[] = [
     slug: 'cloud-infrastructure',
     number: '04',
     title: 'Cloud Infrastructure',
-    emphasizedTitle: 'Infrastructure',
+    emphasizedTitle: 'Cloud',
     category: 'Engineering',
     iconSymbol: '☁',
-    summary: 'Secure, scalable, monitored.',
-    description: 'We construct resilient cloud environments across AWS, Google Cloud, and Azure. Automated Docker deployments, Kubernetes clustering, and proactive cost-reduction audits that keep overhead minimal.',
-    disciplines: ['AWS / GCP / Azure', 'DevOps & automated CI/CD', 'Cloud migration', 'Proactive monitoring & security'],
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+    summary: 'DevOps automation, resilient cloud pipelines, and isolated VPC architecture.',
+    description: 'We construct immutable infrastructure using AWS, Docker, and Terraform. Ensuring 99.99% uptime, zero-downtime rolling deployments, and ironclad enterprise data isolation.',
+    disciplines: ['AWS & GCP architecture', 'Kubernetes & Docker', 'CI/CD pipeline automation', 'Cost optimization'],
     deliverables: [
-      'Terraform Infrastructure-as-Code (IaC) templates',
-      'Zero-downtime rolling deployment pipelines via GitHub Actions',
-      'Real-time Datadog/Prometheus metrics and incident alerts',
-      'Cloud bill cost optimization slashing redundant compute waste'
+      'Infrastructure as Code (IaC) via Terraform with version control',
+      'Multi-region automated database backups and disaster recovery',
+      'Automated GitHub Actions CI/CD pipelines with staging previews',
+      'Security audit and cost reduction recommendations'
     ],
-    techStack: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'Terraform', 'Datadog', 'GitHub Actions'],
+    techStack: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'PostgreSQL'],
     process: [
-      { step: '01', title: 'Architecture', desc: 'Zero-trust network design with redundant multi-zone clustering.' },
-      { step: '02', title: 'IaC Provision', desc: 'Codifying all infrastructure into version-controlled Terraform modules.' },
-      { step: '03', title: 'Security', desc: 'Automated vulnerability scanning, RBAC permissions, and SSL lifecycle.' },
-      { step: '04', title: 'Telemetry', desc: '24/7 health monitors with guaranteed incident response SLAs.' }
+      { step: '01', title: 'Audit', desc: 'We analyze current infrastructure bottlenecks, security gaps, and billing waste.' },
+      { step: '02', title: 'Blueprint', desc: 'Architecting isolated VPCs, autoscaling groups, and private database subnets.' },
+      { step: '03', title: 'Migration', desc: 'Gradual, zero-downtime workload migration with fallback DNS cutovers.' },
+      { step: '04', title: 'Observability', desc: 'Prometheus, Grafana, and automated alerts for proactive health management.' }
     ],
     faqs: [
       {
-        question: 'Can you help us reduce our existing AWS or GCP bills?',
-        answer: 'Yes. Our cloud audits routinely identify 25% to 45% in immediate monthly savings through unattached volume cleanup, Graviton instance migration, and VPC routing optimizations.'
+        question: 'Can you lower our existing AWS or cloud bills?',
+        answer: 'Yes. Our cloud audits consistently eliminate 30% to 50% of wasted compute costs by right-sizing instances, implementing autoscaling, and migrating to serverless compute where appropriate.'
       }
     ]
   },
@@ -153,27 +158,28 @@ export const servicesData: ServiceDetail[] = [
     title: 'SEO Services',
     emphasizedTitle: 'SEO',
     category: 'Growth',
-    iconSymbol: '⌕',
-    summary: 'Be found by the right people.',
-    description: 'Technical search optimization, green Core Web Vitals, and authoritative topical clusters designed to capture high-intent commercial buyers organically without relying solely on paid ad spend.',
-    disciplines: ['Technical SEO audits', 'Semantic topical authority', 'Local search visibility', 'Editorial link building'],
+    iconSymbol: '↗',
+    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    summary: 'Programmatic SEO, technical website speed, and compounding organic search rankings.',
+    description: 'We combine rigorous technical site optimization with semantic topical authority. Engineering web architectures that search engines index effortlessly and reward with durable first-page visibility.',
+    disciplines: ['Technical SEO audits', 'Programmatic page generation', 'Core Web Vitals tuning', 'Semantic content strategy'],
     deliverables: [
-      'Comprehensive Core Web Vitals optimization (INP, LCP, CLS)',
-      'Topical keyword mapping and structured content briefs',
-      'JSON-LD rich schema architecture for search engines',
-      'High-authority contextual backlink acquisition'
+      'Comprehensive technical audit covering indexing, crawl budget & canonicals',
+      'Core Web Vitals optimization achieving green scores across LCP, FID, and CLS',
+      'Semantic keyword clustering and high-intent topical hierarchy maps',
+      'Automated schema markup (JSON-LD) implementation across all templates'
     ],
-    techStack: ['Ahrefs', 'Screaming Frog', 'Google Search Console', 'Next.js SEO', 'Schema.org'],
+    techStack: ['Next.js SSR', 'Schema.org', 'Google Search Console', 'Ahrefs', 'Screaming Frog', 'Vercel Analytics'],
     process: [
-      { step: '01', title: 'Audit', desc: 'Deep crawl identifying indexation blocks and crawl budget waste.' },
-      { step: '02', title: 'Structure', desc: 'Re-engineering site architecture into authoritative semantic clusters.' },
-      { step: '03', title: 'Performance', desc: 'Ensuring sub-2 second load times and pristine mobile responsiveness.' },
-      { step: '04', title: 'Authority', desc: 'Earning natural editorial backlinks from recognized industry domains.' }
+      { step: '01', title: 'Audit', desc: 'Full crawl of existing site to identify broken links, redirect chains, and indexing blocks.' },
+      { step: '02', title: 'Speed', desc: 'Code-splitting and asset optimization to achieve sub-second Core Web Vitals.' },
+      { step: '03', title: 'Structure', desc: 'Building semantic topical hubs that establish definitive niche domain authority.' },
+      { step: '04', title: 'Tracking', desc: 'Monthly ranking telemetry and organic conversion attribution dashboards.' }
     ],
     faqs: [
       {
-        question: 'How long does it take to see tangible organic traffic growth?',
-        answer: 'Technical fixes often yield indexation and ranking improvements within 3 to 6 weeks, while high-competition topical authority rankings compound noticeably between months 3 and 6.'
+        question: 'How soon can we expect organic search ranking results?',
+        answer: 'Technical fixes (such as resolving indexing blocks and Core Web Vitals) often yield visible improvements within 4 to 6 weeks. Broad keyword authority typically compounds over 3 to 6 months of consistent publishing.'
       }
     ]
   },
@@ -184,26 +190,27 @@ export const servicesData: ServiceDetail[] = [
     emphasizedTitle: 'Marketing',
     category: 'Growth',
     iconSymbol: '✦',
-    summary: 'Social, ads and brand content.',
-    description: 'Quiet, confident growth marketing. Precision paid advertising across Meta and Google, server-side attribution modeling, and brand content that conveys authority without cheap hype or clickbait.',
-    disciplines: ['Paid performance ads', 'Server-side CAPI tracking', 'Lifecycle email funnels', 'Social media authority'],
+    imageUrl: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=1200&q=80',
+    summary: 'Precision performance marketing, conversion funnels, and data analytics.',
+    description: 'We build data-driven customer acquisition funnels that convert visitors into loyal clients. Combining precision paid acquisition with high-converting landing pages and automated retention sequences.',
+    disciplines: ['Performance advertising', 'Conversion rate optimization (CRO)', 'Email marketing automation', 'Lifecycle analytics'],
     deliverables: [
-      'Full campaign architecture on Meta Ads, Google Ads, and LinkedIn',
-      'Server-side Conversions API (CAPI) for 100% accurate tracking',
-      'High-converting landing page design and A/B test iterations',
-      'Automated email welcome and customer re-engagement sequences'
+      'Multi-channel acquisition strategy across Google, Meta, and LinkedIn',
+      'High-converting landing page designs with A/B testing infrastructure',
+      'Automated email nurture sequences and churn-prevention workflows',
+      'End-to-end attribution dashboards linking ad spend directly to revenue'
     ],
-    techStack: ['Meta Ads Manager', 'Google Ads', 'LinkedIn Campaign Manager', 'Klaviyo', 'Figma'],
+    techStack: ['Google Ads', 'Meta Ads Manager', 'PostHog', 'Klaviyo', 'Customer.io', 'Google Analytics 4'],
     process: [
-      { step: '01', title: 'Targeting', desc: 'Pinpointing high-intent decision-maker personas and pain points.' },
-      { step: '02', title: 'Creative', desc: 'Crafting thoughtful, high-aesthetic visual and copy hooks.' },
-      { step: '03', title: 'Attribution', desc: 'Deploying server-side CAPI to protect signal against cookie loss.' },
-      { step: '04', title: 'Scale', desc: 'Systematic multivariate testing to maximize customer acquisition ROAS.' }
+      { step: '01', title: 'Audience', desc: 'Deep research into customer acquisition costs, buying triggers, and competitive gaps.' },
+      { step: '02', title: 'Funnels', desc: 'Designing streamlined landing pages tailored to specific high-intent search queries.' },
+      { step: '03', title: 'Testing', desc: 'Running multivariate ad creative and copy experiments to establish winning baselines.' },
+      { step: '04', title: 'Scale', desc: 'Systematically increasing spend on profitable campaigns while suppressing CAC.' }
     ],
     faqs: [
       {
-        question: 'What platforms do you specialize in for paid customer acquisition?',
-        answer: 'We focus primarily on Meta Ads (Facebook & Instagram) for consumer and high-ticket service brands, Google Search for high-intent search capture, and LinkedIn for targeted B2B enterprise acquisition.'
+        question: 'Do you manage ad creative as well as technical analytics?',
+        answer: 'Yes. We craft the copy, graphic design, and landing pages in addition to tracking pixels and conversion API setups, providing a turnkey growth solution.'
       }
     ]
   }

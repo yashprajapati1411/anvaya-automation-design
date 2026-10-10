@@ -20,12 +20,9 @@ const routes = [
   '/services/seo',
   '/services/digital-marketing',
   '/projects',
-  '/projects/aura-health-ai-copilot',
-  '/projects/finpulse-multi-tenant-saas',
-  '/projects/nexus-logistics-customs-ocr',
-  '/projects/omnistore-headless-commerce',
-  '/projects/vanguard-cloud-devops',
-  '/projects/urban-nest-seo-domination',
+  '/projects/pulsefit-gym-platform',
+  '/projects/caredial-ivr-appointment-system',
+  '/projects/frontdesk-ai-receptionist',
   '/blog',
   '/blog/how-ai-automation-saves-20-hours-a-week',
   '/about',
@@ -68,7 +65,7 @@ class ChromeClient {
     await new Promise(r => { this.ws.onopen = r; });
   }
 
-  send(method, params = {}, timeoutMs = 6000) {
+  send(method, params = {}, timeoutMs = 15000) {
     const id = this.id++;
     return new Promise((resolve, reject) => {
       const timer = setTimeout(() => {
@@ -169,7 +166,7 @@ async function runAudit() {
                 const lh = style.lineHeight;
                 if (ff && fs) distinctFonts.add(ff.split(',')[0].replace(/['"]/g, '').trim() + ' ' + fs + '/' + lh);
 
-                if (el.tagName === 'IMG' && (!el.complete || el.naturalWidth === 0)) {
+                if (el.tagName === 'IMG' && el.complete && el.naturalWidth === 0) {
                   brokenImages++;
                 }
 

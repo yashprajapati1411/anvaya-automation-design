@@ -15,12 +15,12 @@ export default function NotFound() {
           <PearlSphere size={120} />
         </div>
 
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-widest uppercase bg-[var(--card)] border border-[var(--line)] text-[var(--mut)] mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold tracking-[0.14em] uppercase bg-card border border-line text-muted mb-6">
           [ 404 · PAGE NOT FOUND ]
         </div>
 
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-[var(--ink)]">
-          The quiet void of <em>space.</em>
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-ink">
+          The quiet void of space.
         </h1>
 
         <p className="text-base sm:text-lg text-[var(--mut)] font-light leading-relaxed mb-10 max-w-md mx-auto">

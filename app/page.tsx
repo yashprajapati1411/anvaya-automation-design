@@ -1,239 +1,198 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, ArrowRight, ShieldCheck, CheckCircle2, Sparkles, Layers, Terminal, Zap, Star } from 'lucide-react';
 import { PearlSphere } from '@/components/ui/PearlSphere';
 import { HairlineRing } from '@/components/ui/HairlineRing';
 import { FadeUp } from '@/components/ui/FadeUp';
-import { CountUp } from '@/components/ui/CountUp';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { servicesData } from '@/data/servicesData';
-import { projectsData } from '@/data/projectsData';
 import { blogsData } from '@/data/blogsData';
-import { philosophyStats } from '@/data/teamData';
+import { guidingPrinciples, projectApproachStages, clientReviews } from '@/data/teamData';
 
 export default function HomePage() {
-  const featuredProjects = projectsData.filter((p) => p.featured).slice(0, 3);
   const latestBlogs = blogsData.slice(0, 3);
+  const [activeProcessTab, setActiveProcessTab] = useState(0);
+
+  // Hero Scroll Zoom Animation
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Circle zooms in as user scrolls down
+  const sphereScale = useTransform(scrollYProgress, [0, 0.85], [1, 3.4]);
+  const sphereOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.95, 0.15]);
+  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const heroTextY = useTransform(scrollYProgress, [0, 0.55], [0, -45]);
+  const bottomRowOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
 
   return (
     <div className="relative overflow-hidden w-full">
-      {/* ================= 1. HERO SECTION ([ 01 / 05 ]) ================= */}
-      <section className="relative min-h-[100svh] flex flex-col justify-between items-center px-6 md:px-10 pt-24 md:pt-28 pb-8 md:pb-12 overflow-hidden">
-        {/* Main Content Area: Centered Sphere + Headline */}
-        <div className="w-full max-w-[1280px] mx-auto flex-1 flex flex-col justify-center items-center relative my-auto py-4">
-          {/* Sized Sphere and Orbit Container: Never touches navbar or CTA */}
-          <div className="relative flex items-center justify-center" style={{ width: 'min(68vh, 62vw)', height: 'min(68vh, 62vw)', maxWidth: '480px', maxHeight: '480px' }}>
-            {/* Hairline Orbit Ring */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none scale-125">
-              <HairlineRing size="100%" />
-            </div>
+      {/* ================= 1. HERO SECTION WITH SCROLL ZOOM SPHERE ================= */}
+      <section ref={heroRef} className="relative h-[130vh] sm:h-[140vh] w-full">
+        <div className="sticky top-0 h-screen w-full flex flex-col justify-between items-center px-6 md:px-12 pt-24 md:pt-28 pb-8 md:pb-12 overflow-hidden">
+          {/* Main Content Area: Centered Zooming Sphere + Headline */}
+          <div className="w-full max-w-[1440px] mx-auto flex-1 flex flex-col justify-center items-center relative my-auto py-4">
+            {/* Zooming Sphere and Ring Container */}
+            <motion.div
+              style={{
+                scale: sphereScale,
+                opacity: sphereOpacity,
+                width: 'min(64vh, 58vw)',
+                height: 'min(64vh, 58vw)',
+                maxWidth: '520px',
+                maxHeight: '520px',
+              }}
+              className="relative flex items-center justify-center transform-gpu will-change-transform"
+            >
+              {/* Hairline Orbit Ring */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none scale-125">
+                <HairlineRing size="100%" />
+              </div>
 
-            {/* Signature Pearl Sphere */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <PearlSphere size="100%" />
-            </div>
+              {/* Signature Pearl Sphere */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <PearlSphere size="100%" />
+              </div>
+            </motion.div>
 
-            {/* Hero Big Headline Centered on the Sphere */}
-            <div className="relative z-10 px-4 text-center">
+            {/* Hero Big Headline Centered on the Sphere (Fades on scroll) */}
+            <motion.div
+              style={{
+                opacity: heroTextOpacity,
+                y: heroTextY,
+              }}
+              className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 text-center pointer-events-none"
+            >
               <motion.h1
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[clamp(2.75rem,7.5vw,5.5rem)] font-bold tracking-[-0.035em] leading-[0.96] text-ink select-none pb-2"
+                className="text-[clamp(2.75rem,8vw,5.75rem)] font-bold tracking-tight leading-[0.98] text-ink select-none pb-2 pointer-events-auto"
               >
                 Intelligence,
                 <br />
-                <em>refined.</em>
+                refined.
               </motion.h1>
-            </div>
+            </motion.div>
           </div>
-        </div>
 
-        {/* Hero Bottom Row: Shares identical max-w-[1280px] and side padding with navbar */}
-        <div className="w-full max-w-[1280px] mx-auto relative z-10 pt-4 md:pt-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 text-xs text-muted border-t border-line/60 pt-6">
-            {/* Left Description */}
-            <div className="text-center md:text-left leading-relaxed max-w-[320px] text-[13px] text-muted font-normal order-2 md:order-1">
-              AI automation, web, cloud, mobile and growth marketing, composed into one seamless studio.
-            </div>
+          {/* Hero Bottom Row: Aligned with max-w-[1440px] container */}
+          <motion.div
+            style={{ opacity: bottomRowOpacity }}
+            className="w-full max-w-[1440px] mx-auto relative z-10 pt-4 md:pt-6"
+          >
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 md:gap-8 border-t border-line/70 pt-6">
+              {/* Left Description */}
+              <div className="text-center sm:text-left leading-relaxed max-w-md text-sm md:text-base text-muted font-normal">
+                AI automation, web, cloud, mobile and growth marketing, composed into one seamless studio.
+              </div>
 
-            {/* Centre CTA Button with Clear Gap */}
-            <div className="order-1 md:order-2">
-              <Magnetic>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 bg-ink text-ivory px-7 py-3.5 rounded-pill text-[13px] font-semibold tracking-wide shadow-sm hover:bg-neutral-800 transition-all select-none min-h-[44px]"
-                  aria-label="Explore Anvaya Automation services"
-                >
-                  <span>Explore services</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Magnetic>
+              {/* Centre CTA Button */}
+              <div className="flex items-center">
+                <Magnetic>
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-2.5 bg-ink text-ivory px-8 py-3.5 rounded-pill text-sm font-semibold tracking-wide shadow-sm hover:bg-neutral-800 transition-all select-none min-h-[46px]"
+                    aria-label="Explore Anvaya Automation services"
+                  >
+                    <span>Explore services</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Magnetic>
+              </div>
             </div>
-
-            {/* Right Scroll Indicator */}
-            <div className="text-center md:text-right text-[12px] font-medium tracking-[0.14em] uppercase text-muted order-3">
-              Scroll to discover
-              <span className="block text-ink font-semibold mt-0.5">[ 01 / 05 ]</span>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ================= 2. WHAT WE DO ([ 02 / 05 ]) ================= */}
-      <section className="py-20 md:py-28 border-t border-line">
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-10">
+      {/* ================= 2. WHAT WE DO (VERTICAL STACK WITH IMAGES) ================= */}
+      <section className="py-24 md:py-32 border-t border-line relative z-20 bg-bg">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeUp>
-            <div className="quiet-tag mb-4">[ 02 / 05 ] What we do</div>
-            <h2 className="text-[clamp(2.25rem,5vw,4.5rem)] font-bold tracking-[-0.02em] leading-[1.05] max-w-3xl text-ink pb-2">
-              Everything your business needs to <em>scale.</em>
+            <div className="quiet-tag mb-4">What We Do</div>
+            <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight leading-[1.04] max-w-4xl text-ink pb-2">
+              Everything your business needs to scale.
             </h2>
-            <p className="mt-4 text-muted text-base max-w-2xl leading-relaxed font-light">
-              Six core disciplines, unified under one studio. Designed to remove operational drag and engineer compounding revenue.
+            <p className="mt-4 text-muted text-base sm:text-lg max-w-3xl leading-relaxed font-light">
+              Six core disciplines, engineered to eliminate operational drag, automate manual friction, and build compounding digital systems.
             </p>
           </FadeUp>
 
-          {/* Horizontal Scroll Row of 6 Cards */}
-          <div className="flex gap-5 mt-12 overflow-x-auto pb-4 no-scrollbar scroll-smooth">
+          {/* Vertical Grid of 6 Cards with Thematic Images */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
             {servicesData.map((service, idx) => (
               <motion.div
                 key={service.slug}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="flex-none w-[270px] sm:w-[300px]"
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="h-full"
               >
                 <Link
                   href={`/services/${service.slug}`}
                   data-cursor="view"
-                  className="quiet-card block p-7 min-h-[290px] flex flex-col justify-between group cursor-pointer"
+                  className="quiet-card overflow-hidden block group h-full flex flex-col justify-between border border-line bg-card hover:border-[#cfcbc1] transition-all duration-300"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 rounded-full border border-ink flex items-center justify-center font-serif text-lg text-ink group-hover:bg-ink group-hover:text-ivory transition-colors">
-                      {service.iconSymbol}
-                    </div>
-                    <span className="text-[12px] font-medium tracking-[0.14em] uppercase text-muted">
-                      {service.number}
-                    </span>
-                  </div>
-
                   <div>
-                    <b className="font-bold text-xl tracking-tight text-ink block mb-2 group-hover:text-neutral-900 transition-colors">
-                      {service.title}
-                    </b>
-                    <small className="text-muted text-[13px] leading-relaxed block font-light">
-                      {service.summary}
-                    </small>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                    {/* Thematic Image Header Area */}
+                    <div className="h-52 w-full relative overflow-hidden bg-neutral-200">
+                      <img
+                        src={service.imageUrl}
+                        alt={service.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
+                      
+                      {/* Top Badges */}
+                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                        <span className="text-[11px] font-semibold tracking-[0.14em] uppercase bg-surface/90 backdrop-blur-md px-3 py-1 rounded-pill text-ink border border-line shadow-sm">
+                          {service.category}
+                        </span>
+                        <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-ivory drop-shadow-md">
+                          {service.number}
+                        </span>
+                      </div>
 
-      {/* ================= 3. PHILOSOPHY DARK SECTION ([ 03 / 05 ]) ================= */}
-      <section className="py-24 md:py-32 bg-dark text-ivory relative overflow-hidden">
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-10 relative z-10">
-          <FadeUp>
-            <div className="text-[12px] font-medium tracking-[0.14em] uppercase text-champagne mb-4">
-              [ 03 / 05 ] Philosophy
-            </div>
-            <h2 className="text-[clamp(2.25rem,5vw,4.5rem)] font-bold tracking-[-0.02em] leading-[1.05] max-w-4xl text-ivory pb-2">
-              We don&apos;t just build software. We build systems that{' '}
-              <em>think</em>, <em>run</em> and <em>grow</em> your business.
-            </h2>
-          </FadeUp>
+                      {/* Icon overlay */}
+                      <div className="absolute bottom-4 left-4 w-9 h-9 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center font-serif text-lg text-ink shadow-sm border border-line">
+                        {service.iconSymbol}
+                      </div>
+                    </div>
 
-          {/* 4 Stats Grid with CountUp */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mt-16 pt-12 border-t border-white/10">
-            {philosophyStats.map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: idx * 0.1 }}
-              >
-                <div className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-[-0.04em] text-ivory">
-                  <CountUp value={stat.value} suffix={stat.suffix} />
-                </div>
-                <div className="text-[12px] text-[#A8A49B] mt-2 font-medium tracking-[0.14em] uppercase">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= 4. FEATURED PROJECTS ================= */}
-      <section className="py-24 md:py-32 border-t border-line">
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-10">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
-            <FadeUp>
-              <div className="quiet-tag mb-4">[ Selected Work ]</div>
-              <h2 className="text-[clamp(2.25rem,5vw,4.5rem)] font-bold tracking-[-0.02em] text-ink leading-[1.05] pb-2">
-                Crafted for <em>clarity.</em>
-              </h2>
-            </FadeUp>
-
-            <Link
-              href="/projects"
-              className="text-[12px] font-medium tracking-[0.14em] uppercase text-muted hover:text-ink transition-colors flex items-center gap-1.5"
-            >
-              <span>View all case studies</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          {/* 3 Project Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredProjects.map((project, idx) => (
-              <motion.div
-                key={project.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <Link
-                  href={`/projects/${project.slug}`}
-                  data-cursor="view"
-                  className="quiet-card overflow-hidden block group h-full flex flex-col justify-between"
-                >
-                  <div
-                    className="h-48 w-full p-6 flex flex-col justify-between"
-                    style={{ background: project.coverGradient }}
-                  >
-                    <span className="text-[11px] font-medium tracking-[0.14em] uppercase bg-surface/85 backdrop-blur-sm px-3 py-1 rounded-pill w-fit text-ink border border-line">
-                      {project.serviceTag}
-                    </span>
-                    <span className="text-[12px] font-medium tracking-[0.14em] uppercase text-muted">
-                      {project.year}
-                    </span>
-                  </div>
-
-                  <div className="p-7 flex-1 flex flex-col justify-between">
-                    <div>
-                      <b className="text-xl font-bold tracking-tight text-ink block mb-2 group-hover:text-neutral-900 transition-colors">
-                        {project.title.split(':')[0]}
-                      </b>
-                      <p className="text-sm text-muted leading-relaxed line-clamp-3 font-light">
-                        {project.summary}
+                    {/* Card Content */}
+                    <div className="p-7">
+                      <h3 className="font-bold text-2xl tracking-tight text-ink block mb-2.5 group-hover:text-neutral-900 transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted text-sm sm:text-base leading-relaxed font-light mb-4">
+                        {service.summary}
                       </p>
+                      
+                      {/* Capabilities pills */}
+                      <div className="flex flex-wrap gap-1.5 pt-2">
+                        {service.disciplines.slice(0, 3).map((d) => (
+                          <span
+                            key={d}
+                            className="text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-pill bg-[#F0EDE5] text-[#55524B]"
+                          >
+                            {d}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                  </div>
 
-                    <div className="mt-6 pt-4 border-t border-line flex items-center justify-between text-xs">
-                      <span className="text-ink font-semibold">
-                        {project.metrics[0].value} {project.metrics[0].label}
-                      </span>
-                      <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-ink transition-colors" />
-                    </div>
+                  {/* Card Bottom Link */}
+                  <div className="p-7 pt-4 border-t border-line/60 flex items-center justify-between text-xs sm:text-sm text-ink font-semibold group-hover:text-neutral-900 transition-colors">
+                    <span className="tracking-wide">Explore discipline</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </Link>
               </motion.div>
@@ -242,161 +201,329 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ================= 5. PROCESS TIMELINE ([ 04 / 05 ]) ================= */}
-      <section className="py-24 md:py-32 border-t border-line">
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-10">
+      {/* ================= 3. PHILOSOPHY DARK SECTION (3 SCREENSHOT CARDS) ================= */}
+      <section className="py-24 md:py-32 bg-dark text-ivory relative overflow-hidden">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
           <FadeUp>
-            <div className="quiet-tag mb-4">[ 04 / 05 ] Process</div>
-            <h2 className="text-[clamp(2.25rem,5vw,4.5rem)] font-bold tracking-[-0.02em] text-ink leading-[1.05] pb-2">
-              How we <em>work.</em>
+            <div className="text-[12px] font-semibold tracking-[0.14em] uppercase text-champagne mb-4">
+              Philosophy &amp; Architecture
+            </div>
+            <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight leading-[1.04] max-w-4xl text-ivory pb-2">
+              We don&apos;t just build software. We build systems that think, run and grow your business.
             </h2>
-            <p className="mt-4 text-muted text-base max-w-xl leading-relaxed font-light">
-              Predictable, calm, and communicative delivery. No sudden surprises, no abandoned handovers.
+            <p className="mt-4 text-[#A8A49B] text-base sm:text-lg max-w-2xl leading-relaxed font-light">
+              Architectural standards that ensure high precision, absolute intellectual property sovereignty, and zero data leakage.
             </p>
           </FadeUp>
 
-          {/* Vertical Timeline Steps */}
-          <div className="mt-14 ml-4 pl-8 border-l border-[#CFCBC1] space-y-10 relative">
-            <div className="relative">
-              <div className="absolute -left-[38px] top-1.5 w-3 h-3 rounded-full bg-ink" />
-              <b className="text-xl font-bold tracking-tight text-ink block">Discover</b>
-              <small className="text-muted text-sm leading-relaxed block mt-1 font-light">
-                We learn your business, map daily operations, and find what to automate first.
-              </small>
+          {/* 3 Dark Luxury Cards from Screenshot Reference */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-16 pt-12 border-t border-white/10">
+            {guidingPrinciples.map((card, idx) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: idx * 0.12 }}
+                className="rounded-[28px] p-8 sm:p-9 bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#C9B99A] mb-3">
+                    {card.eyebrow}
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-4">
+                    {card.title}
+                  </h3>
+                  <p className="text-base text-[#A8A49B] font-light leading-relaxed">
+                    {card.desc}
+                  </p>
+                </div>
+                <div className="pt-8 mt-6 border-t border-white/5 flex items-center gap-2 text-xs text-[#C9B99A] font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-champagne" />
+                  <span className="tracking-wide uppercase text-[11px]">Architectural Standard</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= 4. OUR PROCESS (REDESIGNED INTERACTIVE WORKFLOW) ================= */}
+      <section className="py-24 md:py-32 border-t border-line bg-bg">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
+          <FadeUp>
+            <div className="quiet-tag mb-4">Our Process</div>
+            <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight text-ink leading-[1.04] pb-2">
+              How we work.
+            </h2>
+            <p className="mt-4 text-muted text-base sm:text-lg max-w-2xl leading-relaxed font-light">
+              Predictable, calm, and communicative delivery. Click through our four structured execution phases to explore how every engagement operates.
+            </p>
+          </FadeUp>
+
+          {/* Interactive Phase Selector */}
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left Phase Nav Tabs */}
+            <div className="lg:col-span-5 space-y-3">
+              {projectApproachStages.map((phase, idx) => {
+                const isActive = activeProcessTab === idx;
+                return (
+                  <button
+                    key={phase.step}
+                    onClick={() => setActiveProcessTab(idx)}
+                    className={`w-full text-left p-6 rounded-[24px] border transition-all duration-300 flex items-start gap-5 ${
+                      isActive
+                        ? 'bg-surface border-ink shadow-md'
+                        : 'bg-card border-line hover:border-neutral-400'
+                    }`}
+                  >
+                    <span
+                      className={`text-sm font-bold tracking-widest px-3 py-1 rounded-pill ${
+                        isActive ? 'bg-ink text-ivory' : 'bg-[#EAE6DD] text-ink'
+                      }`}
+                    >
+                      {phase.step}
+                    </span>
+                    <div>
+                      <h4 className="text-xl font-bold tracking-tight text-ink">
+                        {phase.phase}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-muted mt-1 font-light">
+                        {phase.subtitle}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
-            <div className="relative">
-              <div className="absolute -left-[38px] top-1.5 w-3 h-3 rounded-full bg-ink" />
-              <b className="text-xl font-bold tracking-tight text-ink block">Design</b>
-              <small className="text-muted text-sm leading-relaxed block mt-1 font-light">
-                Architecture and interface, agreed in full detail before we build.
-              </small>
-            </div>
+            {/* Right Interactive Detail Display */}
+            <div className="lg:col-span-7">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProcessTab}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.35 }}
+                  className="quiet-card rounded-[32px] p-8 sm:p-12 border border-line bg-surface shadow-sm relative overflow-hidden"
+                >
+                  <div className="flex items-center justify-between pb-6 border-b border-line mb-6">
+                    <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-champagne">
+                      Phase {projectApproachStages[activeProcessTab].step}
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-wider px-3.5 py-1.5 rounded-pill bg-[#F0EDE5] text-ink border border-line">
+                      Active Execution Focus
+                    </span>
+                  </div>
 
-            <div className="relative">
-              <div className="absolute -left-[38px] top-1.5 w-3 h-3 rounded-full bg-ink" />
-              <b className="text-xl font-bold tracking-tight text-ink block">Build</b>
-              <small className="text-muted text-sm leading-relaxed block mt-1 font-light">
-                Weekly staging releases, clean modular code, no surprises.
-              </small>
-            </div>
+                  <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink mb-4">
+                    {projectApproachStages[activeProcessTab].phase}
+                  </h3>
+                  <div className="text-sm sm:text-base font-semibold text-[#8C7A5B] mb-6">
+                    {projectApproachStages[activeProcessTab].subtitle}
+                  </div>
 
-            <div className="relative">
-              <div className="absolute -left-[38px] top-1.5 w-3 h-3 rounded-full bg-ink" />
-              <b className="text-xl font-bold tracking-tight text-ink block">Evolve</b>
-              <small className="text-muted text-sm leading-relaxed block mt-1 font-light">
-                Continuous telemetry monitoring, SLA support, and proactive improvements.
-              </small>
+                  <p className="text-base sm:text-lg text-muted font-light leading-relaxed mb-8">
+                    {projectApproachStages[activeProcessTab].desc}
+                  </p>
+
+                  <div className="p-6 rounded-[20px] bg-[#F4F1EA] border border-line flex items-start gap-4">
+                    <ShieldCheck className="w-6 h-6 text-ink mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted block mb-1">
+                        Core Tangible Deliverable
+                      </span>
+                      <strong className="text-ink text-sm sm:text-base font-semibold">
+                        {projectApproachStages[activeProcessTab].deliverable}
+                      </strong>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ================= 6. TESTIMONIALS & BLOG TEASER ================= */}
-      <section className="py-20 md:py-28 border-t border-line bg-surface/50">
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-10">
-          {/* Testimonials slot */}
-          <div className="mb-20">
-            <div className="quiet-tag mb-4">[ Partnership Trust ]</div>
-            <div className="quiet-card p-8 sm:p-12 relative overflow-hidden">
-              <p className="text-xl sm:text-2xl text-ink font-serif italic leading-relaxed max-w-3xl">
-                &ldquo;Anvaya transformed our operational workflow from fragile manual chaos into a silent, predictable engine. Our team now focuses on clients rather than administrative busywork.&rdquo;
-              </p>
-              <div className="mt-8 pt-6 border-t border-line flex flex-col sm:flex-row sm:items-center justify-between text-xs text-muted gap-4">
+      {/* ================= 5. TRUSTED BY OUR CLIENTS (UNIQUE TEMPLATE WITH REVIEWS) ================= */}
+      <section className="py-24 md:py-32 border-t border-line bg-surface/60">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
+          <FadeUp>
+            <div className="quiet-tag mb-4">Client Verification &amp; Reviews</div>
+            <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight text-ink leading-[1.04] pb-2">
+              Trusted by our clients.
+            </h2>
+            <p className="mt-4 text-muted text-base sm:text-lg max-w-2xl leading-relaxed font-light">
+              Direct verification from leadership teams who transformed their manual operations with Anvaya Automation.
+            </p>
+          </FadeUp>
+
+          {/* Unique 3-Card Reviews Template */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            {clientReviews.map((review, idx) => (
+              <motion.div
+                key={review.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: idx * 0.1 }}
+                className="quiet-card rounded-[30px] p-8 sm:p-10 border border-line bg-card flex flex-col justify-between hover:shadow-lg transition-all duration-300"
+              >
                 <div>
-                  <strong className="text-ink block font-sans text-sm font-semibold">Managing Director</strong>
-                  <span className="text-xs text-muted">Global Logistics &amp; Health Partner</span>
-                </div>
-                {/* On-theme Champagne Accent Badge (replacing green) */}
-                <div className="text-ink font-semibold flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-champagne" />
-                  <span>73% Operational Time Saved</span>
-                </div>
-              </div>
-            </div>
-          </div>
+                  {/* Star Rating & Domain Tag */}
+                  <div className="flex items-center justify-between pb-6 border-b border-line mb-6">
+                    <div className="flex items-center gap-1 text-champagne">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-[#C9B99A] text-[#C9B99A]" />
+                      ))}
+                    </div>
+                    <span className="text-[11px] font-semibold tracking-[0.14em] uppercase px-3 py-1 rounded-pill bg-[#F0EDE5] text-[#55524B]">
+                      {review.tag}
+                    </span>
+                  </div>
 
-          {/* Blog Dispatches Teaser */}
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-              <div>
-                <div className="quiet-tag mb-2">[ Editorial Dispatches ]</div>
-                <h2 className="text-[clamp(2.25rem,5vw,4.5rem)] font-bold tracking-[-0.02em] leading-[1.05] text-ink pb-2">
-                  Insights &amp; <em>ideas.</em>
-                </h2>
-              </div>
-              <Link href="/blog" className="text-[12px] font-medium tracking-[0.14em] uppercase text-muted hover:text-ink flex items-center gap-1">
-                Read all dispatches →
-              </Link>
-            </div>
+                  {/* Review Quote */}
+                  <p className="text-base sm:text-lg text-ink font-normal leading-relaxed mb-6">
+                    &ldquo;{review.quote}&rdquo;
+                  </p>
+                </div>
 
-            {/* Equal Height Cards with Soft Pearl Thumbnail Area */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {latestBlogs.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  data-cursor="read"
-                  className="quiet-card overflow-hidden group flex flex-col justify-between h-full min-h-[340px]"
-                >
-                  <div>
-                    {/* Soft Pearl-Gradient Thumbnail Area */}
-                    <div className="h-32 w-full bg-gradient-to-br from-[#ECE8E0] via-[#E4DFD5] to-[#D8D2C6] border-b border-line p-5 flex items-start justify-between relative overflow-hidden">
-                      <div className="pearl-orb w-14 h-14 opacity-60 absolute -right-3 -bottom-3 pointer-events-none" />
-                      <span className="text-[11px] font-medium tracking-[0.14em] uppercase bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-pill text-ink border border-line">
-                        {post.category}
-                      </span>
-                      <span className="text-[12px] font-medium tracking-[0.14em] uppercase text-muted">
-                        {post.readTime}
+                {/* Reviewer Meta & Highlight Metric */}
+                <div className="pt-6 border-t border-line">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <strong className="text-ink block text-base font-bold">
+                        {review.client}
+                      </strong>
+                      <span className="text-xs text-muted font-normal block">
+                        {review.role}, {review.company}
                       </span>
                     </div>
+                  </div>
 
-                    <div className="p-6">
-                      <b className="font-bold text-lg text-ink block group-hover:text-neutral-900 transition-colors leading-snug mb-2">
+                  {/* Highlight Metric Pill */}
+                  <div className="mt-4 inline-flex items-center gap-2 bg-[#F0EDE5] px-3.5 py-1.5 rounded-pill text-xs font-semibold text-ink">
+                    <span className="w-2 h-2 rounded-full bg-champagne" />
+                    <span>{review.metric}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= 6. INSIGHTS & IDEAS (WITH THEMATIC IMAGES & CONSISTENT FONT) ================= */}
+      <section className="py-24 md:py-32 border-t border-line bg-bg">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+            <FadeUp>
+              <div className="quiet-tag mb-4">Editorial Dispatches</div>
+              <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight leading-[1.04] text-ink pb-2">
+                Insights &amp; ideas.
+              </h2>
+              <p className="mt-3 text-muted text-base sm:text-lg max-w-xl font-light">
+                Engineering perspectives on artificial intelligence, systems architecture, and sustainable enterprise growth.
+              </p>
+            </FadeUp>
+            <Link
+              href="/blog"
+              className="text-[13px] font-semibold tracking-[0.14em] uppercase text-muted hover:text-ink flex items-center gap-1.5 transition-colors"
+            >
+              Read all dispatches <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Equal Height Cards with Thematic Real Images */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {latestBlogs.map((post, idx) => (
+              <motion.div
+                key={post.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: idx * 0.1 }}
+                className="h-full"
+              >
+                <Link
+                  href={`/blog/${post.slug}`}
+                  data-cursor="read"
+                  className="quiet-card overflow-hidden group flex flex-col justify-between h-full min-h-[380px] border border-line bg-card hover:border-[#cfcbc1] transition-all duration-300"
+                >
+                  <div>
+                    {/* Thematic Thumbnail Area */}
+                    <div className="h-48 w-full relative overflow-hidden bg-neutral-200">
+                      <img
+                        src={post.imageUrl}
+                        alt={post.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                      
+                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                        <span className="text-[11px] font-semibold tracking-[0.14em] uppercase bg-surface/90 backdrop-blur-md px-3 py-1 rounded-pill text-ink border border-line">
+                          {post.category}
+                        </span>
+                        <span className="text-[12px] font-medium tracking-[0.14em] uppercase text-ivory drop-shadow-md">
+                          {post.readTime}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-7">
+                      <h3 className="font-bold text-xl text-ink block group-hover:text-neutral-900 transition-colors leading-snug mb-3">
                         {post.title}
-                      </b>
-                      <p className="text-xs sm:text-sm text-muted leading-relaxed line-clamp-2 font-light">
+                      </h3>
+                      <p className="text-sm text-muted leading-relaxed line-clamp-2 font-light">
                         {post.summary}
                       </p>
                     </div>
                   </div>
 
-                  <div className="p-6 pt-0 border-t border-line/40 flex items-center justify-between text-xs text-muted mt-auto">
+                  <div className="p-7 pt-0 border-t border-line/40 flex items-center justify-between text-xs sm:text-sm text-muted mt-auto">
                     <span className="text-[12px] font-medium tracking-[0.14em] uppercase">{post.date}</span>
-                    <span className="inline-flex items-center gap-1 font-semibold text-ink group-hover:translate-x-0.5 transition-transform">
-                      Read <ArrowUpRight className="w-3.5 h-3.5" />
+                    <span className="inline-flex items-center gap-1.5 font-bold text-ink group-hover:translate-x-1 transition-transform">
+                      Read Essay <ArrowUpRight className="w-4 h-4" />
                     </span>
                   </div>
                 </Link>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ================= 7. CTA SECTION ([ 05 / 05 ]) ================= */}
+      {/* ================= 7. PROJECT INITIATION CTA ================= */}
       <section className="relative text-center py-28 md:py-36 border-t border-line overflow-hidden bg-bg">
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-10 relative z-10">
-          <div className="max-w-2xl mx-auto">
-            <div className="quiet-tag mb-4">[ 05 / 05 ] Project Initiation</div>
-            <h2 className="text-[clamp(2.25rem,5.5vw,4.5rem)] font-bold tracking-[-0.02em] text-ink leading-[1.05] pb-2">
-              Ready to make your business <em>effortless?</em>
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-3xl mx-auto">
+            <div className="quiet-tag mb-4">Project Initiation</div>
+            <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tight text-ink leading-[1.02] pb-2">
+              Ready to make your business effortless?
             </h2>
-            <p className="mt-4 text-muted text-base max-w-xl mx-auto leading-relaxed font-light">
+            <p className="mt-5 text-muted text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-light">
               Let&apos;s evaluate your existing workflows and blueprint an automated growth engine.
             </p>
 
-            <div className="mt-10">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Magnetic>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-ink text-ivory px-9 py-4 rounded-pill text-sm font-semibold tracking-wide shadow-subtle hover:bg-neutral-800 transition-all select-none min-h-[44px]"
+                  className="inline-flex items-center gap-2.5 bg-ink text-ivory px-9 py-4 rounded-pill text-sm font-semibold tracking-wide shadow-subtle hover:bg-neutral-800 transition-all select-none min-h-[48px]"
                   aria-label="Start a project with Anvaya Automation"
                 >
                   <span>Start a project</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Magnetic>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 border border-ink/30 text-ink px-8 py-4 rounded-pill text-sm font-medium hover:border-ink transition-all min-h-[48px]"
+              >
+                <span>View all services</span>
+              </Link>
             </div>
           </div>
         </div>

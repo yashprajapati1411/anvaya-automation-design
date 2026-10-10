@@ -29,12 +29,12 @@
     overflow-x: hidden;
   }
 
-  /* Exactly ONE word per heading in Instrument Serif Italic */
+  /* Consistent, clean modern typography: No cursive/script serif words */
   em {
-    font-family: var(--font-instrument-serif), Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: inherit;
+    color: inherit;
   }
 }
 
@@ -56,7 +56,7 @@
   .quiet-card {
     background-color: var(--card);
     border: 1px solid var(--line);
-    border-radius: 30px;
+    border-radius: 28px;
     transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -66,21 +66,21 @@
     transform: translateY(-2px);
   }
 
-  /* Number tag [ 01 / 05 ] */
+  /* Number / section label tag */
   .quiet-tag {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--mut);
-    font-weight: 500;
+    font-weight: 600;
     font-family: var(--font-inter-tight), system-ui, sans-serif;
   }
 
-  /* Shared Container across all pages */
+  /* Expanded Shared Container: Eliminates excess empty margins on wide screens */
   .shared-container {
     width: 100%;
-    max-width: 1280px;
+    max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1.5rem;
@@ -88,8 +88,14 @@
   }
   @media (min-width: 768px) {
     .shared-container {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .shared-container {
+      padding-left: 4rem;
+      padding-right: 4rem;
     }
   }
 }

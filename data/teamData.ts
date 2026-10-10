@@ -1,48 +1,81 @@
-export const philosophyStats = [
-  { value: 120, suffix: '+', label: 'Projects delivered' },
-  { value: 40, suffix: 'k', label: 'Hours automated' },
-  { value: 8, suffix: '', label: 'Years of experience' },
-  { value: 96, suffix: '%', label: 'Client retention' },
-];
-
-export const coreValues = [
+export const guidingPrinciples = [
   {
-    number: '01',
-    title: 'Precision',
-    desc: 'Details decide quality. We sweat the edge cases, typography kerning, and database schemas so our clients never experience operational surprises.'
+    eyebrow: 'PREDICTABLE EXECUTION',
+    title: 'Deterministic Workflows',
+    desc: 'Autonomous pipelines with strict schema validation, automated recovery fallbacks, and zero hallucination risk.'
   },
   {
-    number: '02',
-    title: 'Transparency',
-    desc: 'Clear scope, clear updates. We demonstrate progress through weekly working staging demos and candid communication, never vague status reports.'
+    eyebrow: 'TOTAL INDEPENDENCE',
+    title: 'Full IP Ownership',
+    desc: '100% client code ownership from day one. Clean TypeScript and Python repos with zero vendor lock-in.'
   },
   {
-    number: '03',
-    title: 'Craft',
-    desc: 'Built to be admired. Software should feel calm, responsive, and dignified. We take deep pride in code quality and elegant interface restraint.'
-  },
-  {
-    number: '04',
-    title: 'Longevity',
-    desc: 'Partners, not vendors. We build systems engineered to outlast hype cycles and scale alongside your business for years to come.'
+    eyebrow: 'ENTERPRISE PRIVACY',
+    title: 'Zero-Data Retention',
+    desc: 'Isolated VPC boundaries and confidential AI endpoints ensure proprietary data never trains public foundation models.'
   }
 ];
 
-export const teamMembers = [
+export const projectApproachStages = [
   {
-    name: 'Yash Prajapati', // TODO: Replace with official founder name
-    role: 'Founder, strategy & AI systems',
-    bio: 'Dedicated to eliminating enterprise busywork through autonomous agentic architecture and calm, high-performance software engineering.'
+    step: '01',
+    phase: 'Deep Operational Diagnostic',
+    subtitle: 'Friction Mapping & Technical Audit',
+    desc: 'We map every repetitive manual task, analyze system bottlenecks, and identify high-yield automation targets before touching a line of code.',
+    deliverable: 'Operational Friction Matrix & ROI Feasibility Map'
   },
   {
-    name: 'Aarav Patel', // TODO: Replace with official engineer name
-    role: 'Engineering & cloud infrastructure',
-    bio: 'Specialist in fault-tolerant Kubernetes deployments, Next.js full-stack systems, and sub-second application performance.'
+    step: '02',
+    phase: 'Deterministic Architecture',
+    subtitle: 'System Schemas & Interface Wireframes',
+    desc: 'We engineer strict fallback boundaries, type-safe API contracts, and high-fidelity quiet-luxury Figma prototypes agreed in complete detail.',
+    deliverable: 'Architectural Blueprint & Security Specification'
   },
   {
-    name: 'Simran Kaur', // TODO: Replace with official growth lead name
-    role: 'Growth, search & attribution',
-    bio: 'Data-driven growth architect specializing in server-side attribution, high-converting funnel design, and technical SEO clusters.'
+    step: '03',
+    phase: 'Agile Production Engineering',
+    subtitle: 'Weekly Releases & Staging Previews',
+    desc: 'We build with modern frameworks (Next.js, Python, PostgreSQL), providing interactive weekly staging demos so you see working progress at all times.',
+    deliverable: 'Production Codebase & Sandboxed Integrations'
+  },
+  {
+    step: '04',
+    phase: 'Telemetry & Autonomous Evolution',
+    subtitle: 'SLA Support & Perpetual Tuning',
+    desc: 'Real-time observability, automated exception handling, and continuous model calibration ensure your systems compound value indefinitely.',
+    deliverable: 'Live Telemetry Dashboard & 24/7 SLA Support'
   }
 ];
 
+export const clientReviews = [
+  {
+    id: 'review-1',
+    client: 'Dr. Elena Rostova',
+    role: 'Chief Medical Officer',
+    company: 'Aura Health Clinics',
+    quote: 'Anvaya transformed our operational workflow from fragile manual chaos into a silent, predictable engine. Our clinical staff now focuses on patient care rather than administrative busywork.',
+    metric: '73% Operational Time Saved',
+    tag: 'Healthcare Automation',
+    rating: 5
+  },
+  {
+    id: 'review-2',
+    client: 'Vikram Sethi',
+    role: 'Director of Operations',
+    company: 'PulseFit Fitness Studios',
+    quote: 'The web app Anvaya engineered for our gyms eliminated booking drops and automated recurring memberships across all our facilities. The UI feels like quiet luxury.',
+    metric: '84% Automated Renewals',
+    tag: 'Web Platform',
+    rating: 5
+  },
+  {
+    id: 'review-3',
+    client: 'Devraj Singhania',
+    role: 'VP of Technology',
+    company: 'Nexus Global Logistics',
+    quote: 'What used to take 45 minutes of manual entry per international customs manifest now completes in 8 seconds with zero errors. Their engineering discipline is remarkable.',
+    metric: '8s Per Document Sync',
+    tag: 'Telephony & Cloud',
+    rating: 5
+  }
+];

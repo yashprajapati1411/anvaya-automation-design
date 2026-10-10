@@ -7,7 +7,7 @@ const contactSchema = z.object({
   email: z.string().email('Please enter a valid business email address.'),
   company: z.string().optional(),
   services: z.array(z.string()).min(1, 'Please select at least one service you are interested in.'),
-  budget: z.string().min(1, 'Please select an estimated budget range.'),
+  budget: z.string().optional(),
   message: z.string().min(10, 'Please share a brief note about your project (at least 10 characters).'),
 });
 
@@ -29,7 +29,7 @@ export async function submitContactAction(
       email: formData.get('email') as string,
       company: (formData.get('company') as string) || undefined,
       services: formData.getAll('services') as string[],
-      budget: formData.get('budget') as string,
+      budget: (formData.get('budget') as string) || undefined,
       message: formData.get('message') as string,
     };
 
@@ -44,8 +44,6 @@ export async function submitContactAction(
       };
     }
 
-    // In production, integrate Resend, Nodemailer, or your CRM webhook here
-    // Example: await sendEmail({ to: 'hello@anvaya.com', ...validated.data });
     console.log('[Anvaya Contact Inquiry Received]', validated.data);
 
     // Simulate standard server latency
@@ -59,7 +57,7 @@ export async function submitContactAction(
     console.error('[Anvaya Contact Action Error]', error);
     return {
       success: false,
-      message: 'An unexpected error occurred while transmitting your request. Please email us directly at hello@anvaya.com.',
+      message: 'An unexpected error occurred while transmitting your request. Please email us directly at contact@anvayaautomation.com.',
     };
   }
 }

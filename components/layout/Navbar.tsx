@@ -113,22 +113,22 @@ export const Navbar: React.FC = () => {
         onMouseLeave={() => setIsNearTop(false)}
         className="fixed top-0 left-0 right-0 z-50 pointer-events-none py-5 md:py-6"
       >
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-10">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo: Anvaya Automation */}
             <div className="pointer-events-auto">
               <Link
                 href="/"
-                className="font-semibold text-lg tracking-tight text-ink hover:opacity-80 transition-opacity select-none"
+                className="font-bold text-xl tracking-tight text-ink hover:opacity-80 transition-opacity select-none"
               >
-                {siteConfig.shortName}
+                Anvaya Automation
               </Link>
             </div>
 
             {/* Desktop Floating Pill Navbar */}
             <nav
               aria-label="Primary Navigation"
-              className="hidden md:flex items-center gap-1 bg-surface/90 backdrop-blur-md border border-line rounded-pill p-[5px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] pointer-events-auto"
+              className="hidden md:flex items-center gap-1.5 bg-surface/90 backdrop-blur-md border border-line rounded-pill p-[6px] shadow-[0_4px_24px_rgba(0,0,0,0.04)] pointer-events-auto"
             >
               {navLinks.map((link) => {
                 const isActive =
@@ -140,7 +140,7 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-4 py-2 text-[13px] font-medium rounded-pill transition-colors duration-200 select-none ${
+                    className={`relative px-4.5 py-2 text-[14px] font-medium rounded-pill transition-colors duration-200 select-none ${
                       isActive ? 'text-ivory' : 'text-ink hover:text-neutral-900'
                     }`}
                   >
@@ -161,7 +161,7 @@ export const Navbar: React.FC = () => {
             <div className="hidden md:flex items-center pointer-events-auto">
               <Link
                 href="/contact"
-                className="border border-ink bg-surface/80 backdrop-blur-sm rounded-pill px-5 py-2.5 text-[13px] font-medium text-ink hover:bg-ink hover:text-ivory transition-all duration-200 shadow-sm"
+                className="border border-ink bg-surface/80 backdrop-blur-sm rounded-pill px-5 py-2.5 text-[14px] font-medium text-ink hover:bg-ink hover:text-ivory transition-all duration-200 shadow-sm"
               >
                 Get in touch
               </Link>

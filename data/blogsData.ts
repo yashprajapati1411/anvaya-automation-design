@@ -7,6 +7,7 @@ export interface BlogPost {
   featured: boolean;
   summary: string;
   pullQuote: string;
+  imageUrl: string;
   toc: { id: string; title: string }[];
   content: {
     intro: string;
@@ -33,6 +34,7 @@ export const blogsData: BlogPost[] = [
     featured: true,
     summary: 'A practical, calm look at what growing companies should automate first—and what they should strictly leave to human intuition.',
     pullQuote: 'Technology should reduce effort, not add to it. True automation is quiet, reliable, and invisible.',
+    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
     toc: [
       { id: 'identifying-friction', title: '1. Identifying high-friction tasks' },
       { id: 'deterministic-vs-generative', title: '2. Deterministic vs generative AI' },
@@ -40,8 +42,8 @@ export const blogsData: BlogPost[] = [
       { id: 'measuring-roi', title: '4. Measuring operational ROI' }
     ],
     author: {
-      name: 'Yash Prajapati', // TODO: Replace with author name
-      role: 'Founder & AI Architect, Anvaya'
+      name: 'Yash Prajapati',
+      role: 'Founder & AI Architect, Anvaya Automation'
     },
     content: {
       intro: 'Most companies do not suffer from a lack of ambitious ideas; they suffer from operational friction. Key operators spend their best intellectual energy copying data between Salesforce and Airtable, retyping invoice line items, or manually drafting routine client email follow-ups.',
@@ -91,14 +93,15 @@ export const blogsData: BlogPost[] = [
     featured: false,
     summary: 'Why Google rewards sub-second rendering, clean semantic code, and deep topical authority over superficial keyword stuffing.',
     pullQuote: 'Search algorithms have matured. They reward genuine technical speed and deep subject mastery, not keyword frequency.',
+    imageUrl: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80',
     toc: [
       { id: 'inp-and-core-vitals', title: '1. Interaction to Next Paint (INP)' },
       { id: 'semantic-topical-hubs', title: '2. Semantic topical hubs' },
       { id: 'structured-json-ld', title: '3. Structured JSON-LD schema' }
     ],
     author: {
-      name: 'Rohan Sharma', // TODO: Replace with author name
-      role: 'Head of Search, Anvaya'
+      name: 'Rohan Sharma',
+      role: 'Head of Search, Anvaya Automation'
     },
     content: {
       intro: 'Modern search optimization is engineering-led. Search engines increasingly prioritize genuine user experience telemetry, fast main-thread execution, and verified organizational authority over superficial on-page tricks.',
@@ -138,14 +141,15 @@ export const blogsData: BlogPost[] = [
     featured: false,
     summary: 'A calm evaluation framework to decide whether your company needs a responsive web application, a native mobile app, or both.',
     pullQuote: 'Do not build a mobile app simply because you can. Build what your customers will genuinely open every week.',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
     toc: [
       { id: 'frequency-of-use', title: '1. Frequency of use' },
       { id: 'device-capabilities', title: '2. Device hardware requirements' },
       { id: 'cost-and-maintenance', title: '3. Ongoing maintenance costs' }
     ],
     author: {
-      name: 'Aarav Patel', // TODO: Replace with author name
-      role: 'Principal Engineer, Anvaya'
+      name: 'Aarav Patel',
+      role: 'Principal Engineer, Anvaya Automation'
     },
     content: {
       intro: 'Founders frequently ask whether they should launch on the web or head straight for the Apple App Store. The correct answer depends entirely on your product frequency and required hardware access.',
@@ -185,14 +189,15 @@ export const blogsData: BlogPost[] = [
     featured: false,
     summary: 'Practical engineering tactics to trim 30% to 50% from your monthly cloud hosting bill without sacrificing uptime or performance.',
     pullQuote: 'Cloud waste is almost never a compute problem. It is an architecture hygiene problem.',
+    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
     toc: [
       { id: 'unattached-volumes', title: '1. Forgotten volumes and NAT gateways' },
       { id: 'graviton-migration', title: '2. ARM Graviton migration' },
       { id: 'intelligent-autoscaling', title: '3. Intelligent autoscaling' }
     ],
     author: {
-      name: 'Aarav Patel', // TODO: Replace with author name
-      role: 'Principal Engineer, Anvaya'
+      name: 'Aarav Patel',
+      role: 'Principal Engineer, Anvaya Automation'
     },
     content: {
       intro: 'Unmonitored cloud spending is one of the fastest growing hidden expenses for scaling tech companies. We routinely audit infrastructure accounts and recover thousands of dollars in monthly waste.',
@@ -231,14 +236,15 @@ export const blogsData: BlogPost[] = [
     featured: false,
     summary: 'Moving beyond naive conversational chat interfaces to multi-agent swarms that execute complex tasks with 99.8% deterministic accuracy.',
     pullQuote: 'Chatbots talk to humans. Autonomous agents work on behalf of humans.',
+    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
     toc: [
       { id: 'the-limits-of-chat', title: '1. The limits of single chat prompts' },
       { id: 'modular-subagent-swarms', title: '2. Modular subagent swarms' },
       { id: 'guardrails-and-audits', title: '3. Guardrails and immutable audit logs' }
     ],
     author: {
-      name: 'Yash Prajapati', // TODO: Replace with author name
-      role: 'Founder & AI Architect, Anvaya'
+      name: 'Yash Prajapati',
+      role: 'Founder & AI Architect, Anvaya Automation'
     },
     content: {
       intro: 'In 2026, enterprise companies have largely moved on from basic chat interfaces. The true frontier of applied intelligence is deterministic multi-agent swarms.',
@@ -277,14 +283,15 @@ export const blogsData: BlogPost[] = [
     featured: false,
     summary: 'An executive roadmap for connecting your marketing acquisition, customer onboarding, and backend fulfillment into one cohesive system.',
     pullQuote: 'A company runs best when marketing, engineering, and fulfillment operate on the exact same shared data layer.',
+    imageUrl: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=1200&q=80',
     toc: [
       { id: 'the-silo-problem', title: '1. The silo problem' },
       { id: 'the-unified-data-substrate', title: '2. The unified data substrate' },
       { id: 'the-compounding-advantage', title: '3. Compounding organizational speed' }
     ],
     author: {
-      name: 'Simran Kaur', // TODO: Replace with author name
-      role: 'Head of Growth, Anvaya'
+      name: 'Simran Kaur',
+      role: 'Head of Growth, Anvaya Automation'
     },
     content: {
       intro: 'When marketing operates in one silo, development in another, and client operations in a third, customer experience degrades through miscommunication and delay.',
