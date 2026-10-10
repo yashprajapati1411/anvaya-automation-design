@@ -16,7 +16,7 @@ export default function HomePage() {
   const latestBlogs = blogsData.slice(0, 3);
   const [activeProcessTab, setActiveProcessTab] = useState(0);
 
-  // Hero Interactive 3D Perspective Tilt & Gyroscopic Physics
+  // Hero Interactive Tilt & Scroll Physics
   const heroRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -26,18 +26,15 @@ export default function HomePage() {
     offset: ['start start', 'end start'],
   });
 
-  // Smooth springs for 3D mouse parallax
-  const tiltX = useSpring(useTransform(mouseY, (y) => y * -16), { stiffness: 80, damping: 22 });
-  const tiltY = useSpring(useTransform(mouseX, (x) => x * 20), { stiffness: 80, damping: 22 });
+  // Subtle weighted springs for mouse tilt
+  const tiltX = useSpring(useTransform(mouseY, (y) => y * -12), { stiffness: 60, damping: 20 });
+  const tiltY = useSpring(useTransform(mouseX, (x) => x * 15), { stiffness: 60, damping: 20 });
 
-  // Scroll 3D physics: gentle upward drift and subtle perspective tilt
-  const hero3dY = useTransform(scrollYProgress, [0, 1], [0, 80]);
-  const hero3dRotateX = useTransform(scrollYProgress, [0, 1], [0, 15]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.94]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.9, 0.15]);
-  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
-  const heroTextY = useTransform(scrollYProgress, [0, 0.45], [0, -35]);
-  const bottomRowOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  // Scroll animations: sphere drifts down and scales, text fades gently
+  const heroSphereY = useTransform(scrollYProgress, [0, 1], [0, 160]);
+  const heroSphereScale = useTransform(scrollYProgress, [0, 0.9], [1, 1.1]);
+  const heroTextY = useTransform(scrollYProgress, [0, 0.5], [0, -35]);
+  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -54,166 +51,136 @@ export default function HomePage() {
 
   return (
     <div className="relative overflow-hidden w-full">
-      {/* ================= 1. HERO SECTION WITH 3D GYROSCOPIC LEVITATION ================= */}
+      {/* ================= 1. REDESIGNED HERO SECTION (QUIET LUXURY + SCROLL ANIMATION) ================= */}
       <section
         ref={heroRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative min-h-[100svh] h-[105vh] w-full"
+        className="relative min-h-[100svh] w-full flex flex-col justify-between pt-28 md:pt-36 pb-12 overflow-hidden bg-bg"
       >
-        <div className="sticky top-0 h-screen w-full flex flex-col justify-between items-center px-6 md:px-12 pt-24 md:pt-28 pb-8 md:pb-12 overflow-hidden [perspective:1400px]">
-          {/* Main 3D Interactive Stage */}
+        {/* Soft Ambient Champagne Halo Glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[450px] rounded-full bg-gradient-to-b from-[#C9B99A]/18 via-[#EAE4D7]/25 to-transparent blur-3xl pointer-events-none -z-0" />
+
+        {/* Hero Main Content */}
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10 flex-1 flex flex-col justify-center items-center text-center">
+          
+          {/* Eyebrow Studio Tag */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-pill bg-surface border border-line text-xs font-semibold uppercase tracking-[0.16em] text-[#6F6B63] mb-6 shadow-2xs select-none"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-champagne" />
+            <span>AI Automation &amp; Software Studio</span>
+          </motion.div>
+
+          {/* Majestic Hero Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: heroTextY, opacity: heroTextOpacity }}
+            className="text-[clamp(2.75rem,7.5vw,5.75rem)] font-bold tracking-tight leading-[0.98] text-ink select-none max-w-4xl mx-auto pb-4"
+          >
+            Intelligence, refined.
+          </motion.h1>
+
+          {/* Editorial Subtitle Narrative */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: heroTextY, opacity: heroTextOpacity }}
+            className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl mx-auto leading-relaxed mt-2 mb-8"
+          >
+            We design autonomous workflows, custom web platforms, cloud architecture, and compounding growth systems. Engineered with quiet precision for growing businesses.
+          </motion.p>
+
+          {/* Action CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap items-center justify-center gap-4 mb-10 sm:mb-14"
+          >
+            <Magnetic>
+              <Link
+                href="/contact"
+                className="luxury-btn-dark px-8 sm:px-9 py-3.5 sm:py-4 rounded-pill text-sm font-semibold tracking-wide shadow-sm min-h-[46px] inline-flex items-center gap-2.5"
+              >
+                <span>Start a conversation</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                href="/services"
+                className="luxury-btn-light px-8 sm:px-9 py-3.5 sm:py-4 rounded-pill text-sm font-semibold tracking-wide shadow-2xs min-h-[46px] inline-flex items-center gap-2"
+              >
+                <span>Explore capabilities</span>
+              </Link>
+            </Magnetic>
+          </motion.div>
+
+          {/* Signature Pearl Orb Centerpiece with Parallax Scroll & Celestial Rings */}
           <motion.div
             style={{
-              opacity: heroOpacity,
-              y: hero3dY,
-              scale: heroScale,
+              y: heroSphereY,
+              scale: heroSphereScale,
+              rotateX: tiltX,
+              rotateY: tiltY,
             }}
-            className="w-full max-w-[1440px] mx-auto flex-1 flex flex-col justify-center items-center relative my-auto py-4 [transform-style:preserve-3d]"
+            className="relative flex items-center justify-center my-2 sm:my-4 select-none [perspective:1000px]"
           >
-            {/* 3D Tilting Orb Core & Celestial Rings */}
+            {/* Outer Slow-Rotating Hairline Celestial Orbit Ring */}
             <motion.div
-              style={{
-                rotateX: tiltX,
-                rotateY: tiltY,
-              }}
-              className="relative flex items-center justify-center [transform-style:preserve-3d] will-change-transform"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
+              className="absolute w-[320px] sm:w-[440px] md:w-[500px] h-[320px] sm:h-[440px] md:h-[500px] rounded-full border border-[#DCD6CA] pointer-events-none"
             >
-              {/* Layer 0: Ambient 3D Volumetric Depth Glow */}
-              <div
-                style={{ transform: 'translateZ(-60px)' }}
-                className="absolute w-[380px] sm:w-[480px] h-[380px] sm:h-[480px] rounded-full bg-gradient-to-tr from-[#C9B99A]/15 via-[#E8E4DA]/25 to-transparent blur-3xl pointer-events-none"
-              />
-
-              {/* Layer 1: 3D Outer Gyroscope Ring (Tilted 68deg, continuous slow rotation) */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 48, repeat: Infinity, ease: 'linear' }}
-                style={{
-                  transform: 'translateZ(-20px) rotateX(68deg) rotateY(12deg)',
-                  width: 'min(72vh, 66vw)',
-                  height: 'min(72vh, 66vw)',
-                  maxWidth: '560px',
-                  maxHeight: '560px',
-                }}
-                className="absolute rounded-full border border-[#D0CBC0]/60 pointer-events-none flex items-center justify-center"
-              >
-                {/* Orbital Satellite Node */}
-                <div className="absolute -top-1.5 w-3 h-3 rounded-full bg-champagne shadow-[0_0_12px_rgba(201,185,154,0.6)]" />
-              </motion.div>
-
-              {/* Layer 2: 3D Counter-Rotating Inclined Ring */}
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-                style={{
-                  transform: 'translateZ(10px) rotateX(-54deg) rotateY(-24deg)',
-                  width: 'min(64vh, 58vw)',
-                  height: 'min(64vh, 58vw)',
-                  maxWidth: '490px',
-                  maxHeight: '490px',
-                }}
-                className="absolute rounded-full border border-[#DCD7CD]/50 pointer-events-none flex items-center justify-center"
-              >
-                <div className="absolute -bottom-1.5 w-2.5 h-2.5 rounded-full bg-[#E5DFD3] border border-line" />
-              </motion.div>
-
-              {/* Layer 3: Central Pearl Sphere with Physical Floating Levitation */}
-              <motion.div
-                animate={{
-                  y: [-8, 8, -8],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-                style={{
-                  transform: 'translateZ(40px)',
-                  width: 'min(48vh, 44vw)',
-                  height: 'min(48vh, 44vw)',
-                  maxWidth: '380px',
-                  maxHeight: '380px',
-                }}
-                className="relative flex items-center justify-center [transform-style:preserve-3d]"
-              >
-                {/* Equatorial Hairline Accent */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none scale-110 opacity-70">
-                  <HairlineRing size="100%" />
-                </div>
-
-                {/* Signature Pearl Sphere */}
-                <div className="w-full h-full pointer-events-none drop-shadow-[0_25px_50px_rgba(0,0,0,0.08)]">
-                  <PearlSphere size="100%" />
-                </div>
-              </motion.div>
-
-              {/* Layer 4: Floating 3D Telemetry Tags (Quiet Luxury Spatial Depth) */}
-              <motion.div
-                style={{ transform: 'translateZ(70px)' }}
-                className="absolute -left-12 sm:-left-24 top-1/3 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-pill bg-surface/90 backdrop-blur-md border border-line text-[11px] font-semibold tracking-[0.14em] uppercase text-ink shadow-sm pointer-events-none select-none"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-champagne" />
-                <span>Deterministic Systems</span>
-              </motion.div>
-
-              <motion.div
-                style={{ transform: 'translateZ(70px)' }}
-                className="absolute -right-12 sm:-right-24 bottom-1/3 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-pill bg-surface/90 backdrop-blur-md border border-line text-[11px] font-semibold tracking-[0.14em] uppercase text-ink shadow-sm pointer-events-none select-none"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#161616]" />
-                <span>Zero Residual Drag</span>
-              </motion.div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-champagne shadow-xs" />
             </motion.div>
 
-            {/* Layer 5: Hero Headline Floating in Foreground Depth */}
+            {/* Inner Tilted Elliptical Ring */}
+            <div
+              style={{ transform: 'rotateX(64deg)' }}
+              className="absolute w-[340px] sm:w-[460px] md:w-[540px] h-[340px] sm:h-[460px] md:h-[540px] rounded-full border border-[#E6E0D6] pointer-events-none"
+            />
+
+            {/* Floating Pearl Sphere */}
             <motion.div
-              style={{
-                opacity: heroTextOpacity,
-                y: heroTextY,
-                transform: 'translateZ(95px)',
+              animate={{
+                y: [-8, 8, -8],
               }}
-              className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 text-center pointer-events-none"
+              transition={{
+                duration: 6.5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className="relative w-[210px] sm:w-[260px] md:w-[300px] h-[210px] sm:h-[260px] md:h-[300px] pointer-events-none drop-shadow-[0_20px_45px_rgba(0,0,0,0.08)]"
             >
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[clamp(2.75rem,8vw,5.75rem)] font-bold tracking-tight leading-[0.98] text-ink select-none pb-2 pointer-events-auto drop-shadow-sm"
-              >
-                Intelligence,
-                <br />
-                refined.
-              </motion.h1>
+              <PearlSphere size="100%" />
             </motion.div>
           </motion.div>
+        </div>
 
-          {/* Hero Bottom Row: Aligned with max-w-[1440px] container */}
-          <motion.div
-            style={{ opacity: bottomRowOpacity }}
-            className="w-full max-w-[1440px] mx-auto relative z-10 pt-4 md:pt-6"
-          >
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 md:gap-8 border-t border-line/70 pt-6">
-              {/* Left Description */}
-              <div className="text-center sm:text-left leading-relaxed max-w-md text-sm md:text-base text-muted font-normal">
-                AI automation, web applications, cloud infrastructure, SEO and performance marketing, composed into one seamless studio.
-              </div>
-
-              {/* Centre CTA Button */}
-              <div className="flex items-center">
-                <Magnetic>
-                  <Link
-                    href="/services"
-                    className="luxury-btn-dark px-8 py-3.5 rounded-pill text-sm font-semibold tracking-wide shadow-sm select-none min-h-[46px] inline-flex items-center gap-2.5"
-                    aria-label="Explore Anvaya Automation services"
-                  >
-                    <span>Explore services</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Magnetic>
-              </div>
+        {/* Hero Bottom Strip: Grounded Studio Credentials */}
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 mt-10 pt-6 border-t border-line/70 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-xs text-muted font-medium tracking-wide">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-ink" />
+              <span>5 Core Engineering Disciplines</span>
             </div>
-          </motion.div>
+            <div className="flex items-center gap-2 sm:justify-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-champagne" />
+              <span>Zero Vendor Lock-in · Full IP Ownership</span>
+            </div>
+            <div className="flex items-center gap-2 sm:justify-end">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8C7A5B]" />
+              <span>Mumbai &amp; Bangalore · Global Delivery</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -222,7 +189,7 @@ export default function HomePage() {
         <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeUp>
             <div className="quiet-tag mb-4">What We Do</div>
-            <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight leading-[1.04] max-w-4xl text-ink pb-2">
+            <h2 className="text-[clamp(2.25rem,5.5vw,4.75rem)] font-bold tracking-tight leading-[1.04] max-w-4xl text-coffee pb-2">
               Everything your business needs to scale.
             </h2>
             <p className="mt-4 text-muted text-base sm:text-lg max-w-3xl leading-relaxed font-light">
@@ -256,13 +223,6 @@ export default function HomePage() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
-                      
-                      {/* Top Corner Discipline Number (No category pills) */}
-                      <div className="absolute top-4 right-4 flex items-center">
-                        <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-ivory drop-shadow-md bg-black/35 backdrop-blur-md px-3 py-1 rounded-pill border border-white/20">
-                          {service.number}
-                        </span>
-                      </div>
 
                       {/* Icon overlay */}
                       <div className="absolute bottom-4 left-4 w-9 h-9 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center font-serif text-lg text-ink shadow-sm border border-line">

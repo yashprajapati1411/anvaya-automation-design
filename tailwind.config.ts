@@ -21,6 +21,12 @@ const config: Config = {
         champagne: '#C9B99A',
         accent: '#C9B99A',
         dark: '#121212',
+        coffee: {
+          DEFAULT: '#3D2C20',
+          warm: '#4A3728',
+          dark: '#2A1F17',
+          light: '#725B4C',
+        },
       },
       fontFamily: {
         sans: ['var(--font-inter-tight)', 'system-ui', 'sans-serif'],

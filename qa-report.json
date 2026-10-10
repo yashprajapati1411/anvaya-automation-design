@@ -11,12 +11,12 @@
     "overlapCount": 0,
     "fonts": [
       "__Inter_Tight_c233fe 16px/24px",
+      "__Inter_Tight_c233fe 12px/16px",
+      "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 24px/32px",
       "__Inter_Tight_c233fe 14px/21px",
-      "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 11px/16.5px",
       "__Inter_Tight_c233fe 44px/43.12px",
-      "__Inter_Tight_c233fe 14px/22.75px",
+      "__Inter_Tight_c233fe 16px/26px",
       "__Inter_Tight_c233fe 14px/20px"
     ],
     "status": "PASS"
@@ -37,9 +37,9 @@
       "__Inter_Tight_c233fe 12px/18px",
       "__Inter_Tight_c233fe 24px/32px",
       "__Inter_Tight_c233fe 14px/21px",
-      "__Inter_Tight_c233fe 11px/16.5px",
       "__Inter_Tight_c233fe 44px/43.12px",
-      "__Inter_Tight_c233fe 14px/22.75px"
+      "__Inter_Tight_c233fe 16px/26px",
+      "__Inter_Tight_c233fe 14px/20px"
     ],
     "status": "PASS"
   },
@@ -58,8 +58,8 @@
       "__Inter_Tight_c233fe 24px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 11px/16.5px",
-      "__Inter_Tight_c233fe 61.44px/60.2112px",
+      "__Inter_Tight_c233fe 57.6px/56.448px",
+      "__Inter_Tight_c233fe 20px/28px",
       "__Inter_Tight_c233fe 14px/20px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
@@ -80,8 +80,8 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 11px/16.5px",
-      "__Inter_Tight_c233fe 81.92px/80.2816px",
+      "__Inter_Tight_c233fe 76.8px/75.264px",
+      "__Inter_Tight_c233fe 20px/28px",
       "__Inter_Tight_c233fe 14px/20px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
@@ -102,8 +102,8 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 11px/16.5px",
       "__Inter_Tight_c233fe 92px/90.16px",
+      "__Inter_Tight_c233fe 20px/28px",
       "__Inter_Tight_c233fe 14px/20px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
@@ -124,8 +124,8 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 11px/16.5px",
       "__Inter_Tight_c233fe 92px/90.16px",
+      "__Inter_Tight_c233fe 20px/28px",
       "__Inter_Tight_c233fe 14px/20px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
@@ -146,8 +146,8 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 11px/16.5px",
       "__Inter_Tight_c233fe 92px/90.16px",
+      "__Inter_Tight_c233fe 20px/28px",
       "__Inter_Tight_c233fe 14px/20px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
@@ -168,8 +168,8 @@
       "__Inter_Tight_c233fe 26px/32px",
       "__Inter_Tight_c233fe 14px/21px",
       "__Inter_Tight_c233fe 12px/16px",
-      "__Inter_Tight_c233fe 11px/16.5px",
       "__Inter_Tight_c233fe 92px/90.16px",
+      "__Inter_Tight_c233fe 20px/28px",
       "__Inter_Tight_c233fe 14px/20px",
       "__Inter_Tight_c233fe 13px/13px"
     ],
